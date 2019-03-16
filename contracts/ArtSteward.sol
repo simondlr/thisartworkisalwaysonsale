@@ -7,6 +7,7 @@ contract ArtSteward {
     /*
     This smart contract collects patronage from current owner through a Harberger tax model and 
     takes stewardship of the artwork if the patron can't pay anymore.
+
     Harberger Tax (COST): 
     - Artwork is always on sale.
     - You have to have a price set.
