@@ -1,5 +1,7 @@
 ## This Artwork Is Always On Sale (TAIAOS)
 
+![TAIAOS](https://raw.githubusercontent.com/simondlr/thisartworkisalwaysonsale/master/app/src/components/TAIAOS4.png)
+
 An art project that showcases a digital artwork that is always on sale through Harberger Taxed property rights. The owner of the artwork always has to set a sale price, upon which it can be bought by anyone at any time. A continuous tax is levied as patronage towards the artist calculated on the owner's price they set. If the deposit does not cover the patronage owed, the smart contract steward can foreclose the artwork and take back ownership.
 
 ### Tech
