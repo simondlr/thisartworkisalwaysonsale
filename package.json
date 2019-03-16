@@ -1,0 +1,32 @@
+{
+  "name": "drizzle-box",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "chain": "ganache-cli -e 10000 -m 'sustain seek diet attend ready neutral damage join food extra monkey usage'",
+    "moving_chain": "ganache-cli -e 10000 -b 3 -m 'sustain seek diet attend ready neutral damage join food extra monkey usage'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/truffle-box/drizzle-box.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/truffle-box/drizzle-box/issues"
+  },
+  "homepage": "https://github.com/truffle-box/drizzle-box#readme",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.1.1",
+    "openzeppelin-test-helpers": "^0.1.3"
+  },
+  "devDependencies": {
+    "eth-gas-reporter": "^0.1.12"
+  }
+}
