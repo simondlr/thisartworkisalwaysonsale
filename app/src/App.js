@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DrizzleProvider } from "drizzle-react";
-import { LoadingContainer } from "drizzle-react-components";
+import OfflineContainer from "./OfflineContainer"; // modified from drizzle-react-components
 
 import "./App.css";
 
@@ -11,9 +11,9 @@ class App extends Component {
   render() {
     return (
       <DrizzleProvider options={drizzleOptions}>
-        <LoadingContainer>
+        <OfflineContainer>
           <BaseContainer />
-        </LoadingContainer>
+        </OfflineContainer>
       </DrizzleProvider>
     );
   }

@@ -19,8 +19,8 @@ class AboutArtSection extends Component {
           Does always-on-sale art help us understand how much of our currently life is already always on sale without us knowing it? <br />
           <br />
           Technically, this project utilised Ethereum smart contracts, is open source and follows the appropriate standards (ERC721)
-          for displaying and holding non-fungible tokens. You can fork this project and create your own artwork here:
-          <a href="https://github.com/simondlr/thisartworkisalwaysonsale">https://github.com/simondlr/thisartworkisalwaysonsale</a><br />
+          for displaying and holding non-fungible tokens. You can fork this project and create your own artwork here: <br />
+          <a href="https://github.com/simondlr/thisartworkisalwaysonsale">https://github.com/simondlr/thisartworkisalwaysonsale</a>
         </div>
         )
     }
