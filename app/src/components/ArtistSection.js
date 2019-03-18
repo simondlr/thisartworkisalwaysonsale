@@ -13,7 +13,7 @@ class ArtistSection extends Component {
           that's currently facilitating economies worth several billion dollars of value.
           I pioneered Curation Markets and the proliferation of the new economics around it (such as inventing token bonding curves). 
           Projects using these Curation Market ideas have raised upwards of $50m.
-          I enjoy creating new forms of art and experimenting with ways to support the creative industry.
+          I enjoy creating new forms of art and experimenting with ways to empower the creative industry.
           <br />
           <br />
           Swing me a follow on Twitter! <a href="https://twitter.com/simondlr">@simondlr</a>.

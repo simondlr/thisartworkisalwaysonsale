@@ -24,6 +24,5 @@ contract ERC721Full is ERC721, ERC721Enumerable, ERC721Metadata {
         // mint artwork
         _mint(steward, 42); // mint
         _setTokenURI(42, "https://thisartworkisalwaysonsale.com/metadata");
-        // todo: set tokenURI
     }
 }
