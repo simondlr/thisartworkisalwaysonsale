@@ -18,9 +18,9 @@ class ActionSection extends Component {
         <h2>Owner Actions:</h2>
           {window.ethereum !== undefined ? (
             <Fragment>
-            Change Price: <ContractForm contract="ArtSteward" method="changePrice" labels={["New Price"]}/>
-          Withdraw Deposit: <ContractForm contract="ArtSteward" method="withdrawDeposit" />
-          Withdraw Total Deposit and Foreclose: <ContractForm contract="ArtSteward" method="exit" />
+            <ContractForm buttonText="Change Price" contract="ArtSteward" method="changePrice" labels={["New Price"]}/>
+            <ContractForm buttonText="Withdraw Deposit" contract="ArtSteward" method="withdrawDeposit" labels={["Deposit in ETH"]} toEth />
+            <ContractForm buttonText="Withdraw Whole Deposit And Foreclose" contract="ArtSteward" method="exit" />
             </Fragment>
           ) : (
             <Fragment>

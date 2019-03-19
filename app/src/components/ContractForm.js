@@ -1,6 +1,9 @@
 import { drizzleConnect } from "drizzle-react";
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Button from '@material-ui/core/Button';
 
 class ContractForm extends Component {
   constructor(props, context) {
@@ -88,9 +91,9 @@ class ContractForm extends Component {
   }
 
   render() {
-    const valueLabel = this.props.valueLabel;
     return (
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+
         {this.inputs.map((input, index) => {
           var inputType = this.translateType(input.type);
           var inputLabel = this.props.labels
@@ -98,27 +101,28 @@ class ContractForm extends Component {
             : input.name;
           // check if input type is struct and if so loop out struct fields as well
           return (
-            <input
+            <Input
               key={input.name}
               type={inputType}
               name={input.name}
               value={this.state[input.name]}
               placeholder={inputLabel}
               onChange={this.handleInputChange}
+              startAdornment={<InputAdornment position="start">ETH</InputAdornment>} 
             />
           );
         })}
-        {valueLabel &&
-          <input key={valueLabel} type='number' name='value' value={this.state[valueLabel]} placeholder={valueLabel} onChange={this.handleInputChange} />
-        }
-        <button
+        <Button
+          variant="contained"
           key="submit"
           className="pure-button"
           type="button"
           onClick={this.handleSubmit}
         >
-          Submit
-        </button>
+          {this.props.buttonText}
+        </Button>
+        <br />
+        <br />
       </form>
     );
   }

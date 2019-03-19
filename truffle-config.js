@@ -7,6 +7,7 @@ const rinkebyProviderUrl = 'https://rinkeby.infura.io/v3/e811479f4c414e219e7673b
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
+  plugins: [ "truffle-security" ],
   contracts_build_directory: path.join(__dirname, "app/src/contracts"),
   networks: {
     mainnet: {

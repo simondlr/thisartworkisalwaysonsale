@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
     "cryptocompare": "^1.0.0",
     "drizzle": "^1.2.4",
     "drizzle-react": "^1.2.0",
