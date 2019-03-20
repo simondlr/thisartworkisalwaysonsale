@@ -41,7 +41,7 @@ class AppRoutes extends Component {
     return (
       <Router>
         <Route path='/' exact component={App}/>
-        <Route path='/metadata' component={Metadata}/>
+        <Route path='/metadata' exact component={Metadata}/>
       </Router>
     )
   }
