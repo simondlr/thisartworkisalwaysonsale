@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { DrizzleProvider } from "drizzle-react";
 import OfflineContainer from "./OfflineContainer"; // modified from drizzle-react-components
 
@@ -19,4 +20,31 @@ class App extends Component {
   }
 }
 
-export default App;
+class Metadata extends Component {
+  constructor() {
+    super();
+    this.data = {
+      name: "This Artwork Is Always On Sale",
+      description: "A Digital Artwork That Is Always On Sale",
+      image: "https://thisartworkisalwaysonsale.com/static/media/TAIAOS4.3cd60b66.png"
+    };
+  }
+  render() {
+    return (
+      <div>{JSON.stringify(this.data)}</div>
+    )
+  }
+}
+
+class AppRoutes extends Component {
+  render() {
+    return (
+      <Router>
+        <Route path='/' exact component={App}/>
+        <Route path='/metadata' component={Metadata}/>
+      </Router>
+    )
+  }
+}
+
+export default AppRoutes;
