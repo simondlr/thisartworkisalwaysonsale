@@ -12,8 +12,9 @@ class OfflineContainer extends Component {
       return Children.only(this.props.children);
     }
   
-    if (this.props.web3.status === "" || 
-    (this.props.web3.status === "initialized" && Object.keys(this.props.accounts).length === 0)) {
+    if (this.props.web3.status === "") {
+    // (this.props.web3.status === "initialized" && Object.keys(this.props.accounts).length === 0)) {
+      console.log(this.props);
       return (
         <div className="section">
         This application is offline. Please ensure you have an Ethereum/web3 enabled browser.

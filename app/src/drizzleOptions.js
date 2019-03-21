@@ -2,7 +2,7 @@ import ArtSteward from "./contracts/ArtSteward.json";
 import ERC721Full from "./contracts/ERC721Full.json";
 
 // todo: read env var for fallback
-const fallbackUrl = "ws://127.0.0.1:8545";
+const fallbackUrl = "wss://mainnet.infura.io/ws/v3/e811479f4c414e219e7673b6671c2aba";
 
 const options = {
   web3: {
