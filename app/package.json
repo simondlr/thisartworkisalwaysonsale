@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "cryptocompare": "^1.0.0",
-    "drizzle": "git+ssh://git@github.com:simondlr/drizzle.git#ee8ff32",
+    "drizzle": "https://github.com/simondlr/drizzle.git#ee8ff32",
     "drizzle-react": "^1.2.0",
     "drizzle-react-components": "^1.2.1",
     "moment": "^2.24.0",
