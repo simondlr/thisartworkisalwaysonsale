@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { DrizzleProvider } from "drizzle-react";
 import OfflineContainer from "./OfflineContainer"; // modified from drizzle-react-components
 
@@ -20,6 +20,7 @@ class App extends Component {
   }
 }
 
+/* unused in contract, but keeping for now */
 class Metadata extends Component {
   constructor() {
     super();
