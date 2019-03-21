@@ -18,6 +18,8 @@ class AboutArtSection extends Component {
           Does the increased turnover of the digital art and subsequent possibility of ownership by more people increase the value of the art (financially and artistically)?<br />
           Does always-on-sale art help us understand how much of our currently life is already always on sale without us knowing it? <br />
           <br />
+          For more information, read this article: <a href="https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43">https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43</a><br />
+          <br />
           Technically, this project utilised Ethereum smart contracts, is open source and follows the appropriate standards (ERC721)
           for displaying and holding of non-fungible tokens. You can fork this project and create your own artwork here. It also details future improvements: <br />
           <br />
