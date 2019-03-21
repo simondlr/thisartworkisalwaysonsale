@@ -10,7 +10,7 @@ module.exports = function(deployer, network, accounts) {
   console.log('deploying mf');
   if(network === "rinkeby" || network === "rinkeby-fork" || network === "mainnet" || network === "mainnet-fork") {
     // deploy with mnemonic provider
-    deployer.deploy(Artwork, "ThisArtworkIsAlwaysOnSale", "TAIAOS").then((deployedArtwork) => {
+    deployer.deploy(Artwork, "This Artwork Is Always OnSale", "TAIAOS").then((deployedArtwork) => {
       console.log(deployedArtwork.address);
       return deployer.deploy(ArtSteward, artistAccount, deployedArtwork.address);
     });
