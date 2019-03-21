@@ -23,6 +23,6 @@ contract ERC721Full is ERC721, ERC721Enumerable, ERC721Metadata {
         steward = msg.sender;
         // mint artwork
         _mint(steward, 42); // mint
-        _setTokenURI(42, "https://raw.githubusercontent.com/simondlr/thisartworkisalwaysonsale/master/app/src/nftmetadata.json");
+        _setTokenURI(42, "https://thisartworkisalwaysonsale.com/metadata");
     }
 }
