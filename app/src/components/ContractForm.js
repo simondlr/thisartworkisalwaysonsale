@@ -1,9 +1,11 @@
 import { drizzleConnect } from "drizzle-react";
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Button from '@material-ui/core/Button';
+
+// todo: show ux when transacted
 
 class ContractForm extends Component {
   constructor(props, context) {
@@ -40,34 +42,24 @@ class ContractForm extends Component {
   handleSubmit(event) {
     event.preventDefault();
     let args = this.props.sendArgs;
-    console.log(args);
     const convertedInputs = this.inputs.map((input, index) => {
       if (input.type === 'bytes32') {
         return this.utils.toHex(this.state[input.name])
       } else if (input.type === 'uint256') {
-        console.log('numbers');
-        console.log(this.utils.toWei(this.state[input.name], 'ether'));
         return this.utils.toWei(this.state[input.name], 'ether'); // all number fields are ETH  fields.
       }
       return this.state[input.name];
     });
 
-    console.log('state');
-    console.log(this.state);
     if (this.state.value) {
-      console.log('val label');
       args.value = this.utils.toWei(this.state.value, 'ether');
     }
-    console.log('args2');
-    console.log(args);
     if (args) {
-      console.log('sending with args');
       return this.contracts[this.props.contract].methods[
         this.props.method
       ].cacheSend(...convertedInputs, args);
     }
 
-    console.log(convertedInputs);
     return this.contracts[this.props.contract].methods[
       this.props.method
     ].cacheSend(...convertedInputs);
@@ -132,7 +124,6 @@ ContractForm.contextTypes = {
   drizzle: PropTypes.object,
 };
 
-// todo: add value label
 ContractForm.propTypes = {
   contract: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,

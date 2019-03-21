@@ -40,7 +40,7 @@ OfflineContainer.contextTypes = {
 
 OfflineContainer.propTypes = {
   children: PropTypes.node,
-  accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // accounts: PropTypes.arrayOf(PropTypes.string).isRequired,
   drizzleStatus: PropTypes.object.isRequired,
   web3: PropTypes.object.isRequired,
   loadingComp: PropTypes.node,

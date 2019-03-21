@@ -14,7 +14,7 @@ class ActionSection extends Component {
           <p>Current Deposit For Patronage: <ContractData contract="ArtSteward" method="deposit" toEth /> ETH</p>
           <p>Patronage Owed: <ContractData contract="ArtSteward" method="patronageOwed" toEth /> ETH</p>
           <p>Current Patronage Collected: <ContractData contract="ArtSteward" method="currentCollected" toEth /> ETH</p>
-          <p>Foreclosure Time: <ContractData contract="ArtSteward" method="foreclosureTime" /></p>
+          <p>Foreclosure Time: <ContractData contract="ArtSteward" method="foreclosureTime" toDate /></p>
         <h2>Owner Actions:</h2>
           {window.ethereum !== undefined ? (
             <Fragment>

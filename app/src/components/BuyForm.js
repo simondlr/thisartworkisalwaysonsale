@@ -54,6 +54,7 @@ class BuyForm extends Component {
       return this.state[input.name];
     });
 
+    // todo: if foreclosed, price should default to zero.
     if (this.state.value) {
       console.log(this.props.contracts[this.props.contract]['price']['0x0'].value);
       const artworkPrice = new this.utils.BN(this.props.contracts[this.props.contract]['price']['0x0'].value);
@@ -144,7 +145,6 @@ BuyForm.contextTypes = {
 
 // todo: add value label
 BuyForm.propTypes = {
-  artworkPrice: PropTypes.number.isRequired,
   contract: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
   sendArgs: PropTypes.object,

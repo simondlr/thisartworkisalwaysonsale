@@ -1,6 +1,7 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 class ContractData extends Component {
   constructor(props, context) {
@@ -11,7 +12,6 @@ class ContractData extends Component {
 
     this.utils = context.drizzle.web3.utils;
     this.contracts = context.drizzle.contracts;
-    console.log(this.contracts);
     this.state = {
       dataKey: this.contracts[this.props.contract].methods[
         this.props.method
@@ -81,6 +81,10 @@ class ContractData extends Component {
     // Optionally convert wei to ETH
     if (this.props.toEth) {
       displayData = this.utils.fromWei(displayData, 'ether');
+    }
+
+    if (this.props.toDate) {
+      displayData = moment(parseInt(displayData)*1000).toString();
     }
 
     // If return value is an array

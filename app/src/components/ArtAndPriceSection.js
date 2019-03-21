@@ -10,7 +10,7 @@ class ArtAndPriceSection extends Component {
     render() {
       return (
         <Fragment>
-        <img src={artwork} style={{"max-width": "100%", "max-height": "100%"}} alt="A R T" />
+        <img src={artwork} style={{maxWidth: "100%", maxHeight: "100%"}} alt="A R T" />
         <PriceSection />
         <p>
           The digital artwork above is always on sale.<br />
