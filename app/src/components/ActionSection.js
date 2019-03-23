@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import ContractForm from "./ContractForm";
+import DepositWeiForm from "./DepositWeiForm";
 import ContractData from "./ContractData";
 
 class ActionSection extends Component {
@@ -15,10 +16,12 @@ class ActionSection extends Component {
           <p>Patronage Owed: <ContractData contract="ArtSteward" method="patronageOwed" toEth /> ETH</p>
           <p>Current Patronage Collected: <ContractData contract="ArtSteward" method="currentCollected" toEth /> ETH</p>
           <p>Foreclosure Time: <ContractData contract="ArtSteward" method="foreclosureTime" toDate /></p>
+          <p>Your deposit will cover the patronage until the time above. At this time, the smart contract steward takes ownership of the artwork and sets its price to zero.</p>
         <h2>Owner Actions:</h2>
           {window.ethereum !== undefined ? (
             <Fragment>
             <ContractForm buttonText="Change Price" contract="ArtSteward" method="changePrice" labels={["New Price"]}/>
+            <DepositWeiForm contract="ArtSteward" method="depositWei" valueLabel="Deposit" sendArgs={{}}/>
             <ContractForm buttonText="Withdraw Deposit" contract="ArtSteward" method="withdrawDeposit" labels={["Deposit in ETH"]} toEth />
             <ContractForm buttonText="Withdraw Whole Deposit And Foreclose" contract="ArtSteward" method="exit" />
             </Fragment>

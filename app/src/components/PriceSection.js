@@ -11,7 +11,7 @@ class PriceSection extends Component {
         <h2>Current Price:</h2>
         <p><ContractData contract="ArtSteward" method="price" toEth /> ETH <br />
         <br />
-        Current Owner and Patron:<br /> <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/></p>
+        Current Patron:<br /> <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/></p>
         </Fragment>
       )
     }
