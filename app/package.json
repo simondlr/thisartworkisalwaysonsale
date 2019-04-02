@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
+    "axios": "^0.18.0",
     "cryptocompare": "^1.0.0",
     "drizzle": "https://github.com/simondlr/drizzle.git#ee8ff32",
     "drizzle-react": "^1.2.0",

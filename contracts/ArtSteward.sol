@@ -28,7 +28,7 @@ contract ArtSteward {
     
     mapping (address => bool) public patrons;
     mapping (address => uint256) public timeHeld;
-    mapping (address => uint256) public paid;
+    mapping (address => uint256) public paid; // NOTE: not used [accident]
 
     uint256 public timeAcquired;
     

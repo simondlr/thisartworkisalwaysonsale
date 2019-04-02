@@ -138,7 +138,7 @@ ContractData.contextTypes = {
 };
 
 ContractData.propTypes = {
-  contracts: PropTypes.array.isRequired,
+  contracts: PropTypes.object.isRequired,
   contract: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
   methodArgs: PropTypes.array,

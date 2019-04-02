@@ -1,17 +1,103 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 import ContractData from "./ContractData";
 
+import { getUSDValue } from "../Actions";
+
 class PriceSection extends Component {
+    constructor(props, context) {
+      super();
+      this.utils = context.drizzle.web3.utils;
+      this.contracts = context.drizzle.contracts;
+      this.state = {
+        USD: -1,
+        timeHeld: 0,
+        artworkPriceKey: context.drizzle.contracts.ArtSteward.methods.price.cacheCall(),
+        patron: null,
+        patronKey: context.drizzle.contracts.ERC721Full.methods.ownerOf.cacheCall(42),
+        timeAcquiredKey: context.drizzle.contracts.ArtSteward.methods.timeAcquired.cacheCall(),
+        timeHeldKey: null,
+        currentTimeHeld: 0,
+        currentTimeHeldHumanized: ""
+      };
+    }
+
+    async updateUSDPrice(props) {
+      const price = this.utils.fromWei(this.getArtworkPrice(props), 'ether');
+      const USD = await getUSDValue(price);
+      this.setState({USD});
+    }
+
+    async updateTimeHeld(props) {
+      const timeHeld = this.getTimeHeld(props);
+      const date = new Date();
+      const currentTimeHeld = parseInt(this.getTimeHeld(props)) + (parseInt(date.getTime()/1000) - parseInt(this.getTimeAcquired(props)));
+      const currentTimeHeldHumanized = moment.duration(currentTimeHeld, 'seconds').humanize();
+      this.setState({
+        timeHeld,
+        currentTimeHeld,
+        currentTimeHeldHumanized,
+      });
+    }
+
+    async updatePatron(props) {
+      const patron = this.getPatron(props);
+      // update timeHeldKey IF owner updated
+      this.setState({
+        timeHeldKey: this.contracts.ArtSteward.methods.timeHeld.cacheCall(patron),
+        patron
+      });
+    }
+
+    getArtworkPrice(props) {
+      return new this.utils.BN(props.contracts['ArtSteward']['price']['0x0'].value);
+    }
+
+    getPatron(props) {
+      return props.contracts['ERC721Full']['ownerOf'][this.state.patronKey].value;
+    }
+
+    getTimeAcquired(props) {
+      return props.contracts['ArtSteward']['timeAcquired'][this.state.timeAcquiredKey].value;
+    }
+
+    getTimeHeld(props) {
+      return props.contracts['ArtSteward']['timeHeld'][this.state.timeHeldKey].value;
+    }
+
+    async componentWillReceiveProps(nextProps) {
+      if (this.state.patronKey in this.props.contracts['ERC721Full']['ownerOf']
+      && this.state.patronKey in nextProps.contracts['ERC721Full']['ownerOf']) {
+        if(this.getPatron(this.props) !== this.getPatron(nextProps) || this.state.patron === null) {
+          this.updatePatron(nextProps);
+        }
+      }
+
+      /* todo: fetch new exchange rate? */
+      if (this.state.artworkPriceKey in this.props.contracts['ArtSteward']['price']
+      && this.state.artworkPriceKey in nextProps.contracts['ArtSteward']['price']) {
+        if (!this.getArtworkPrice(this.props).eq(this.getArtworkPrice(nextProps)) || this.state.USD === -1) {
+          await this.updateUSDPrice(nextProps);
+        }
+      }
+
+      if(this.state.timeHeldKey in this.props.contracts['ArtSteward']['timeHeld']
+      && this.state.timeHeldKey in nextProps.contracts['ArtSteward']['timeHeld']) {
+        if(this.getTimeHeld(this.props) !== this.getTimeHeld(nextProps) || this.state.timeHeld === 0) {
+          this.updateTimeHeld(nextProps);
+        }
+      }
+    }
+
     render() {
       return (
         <Fragment>
-        <h2>Current Price:</h2>
-        <p><ContractData contract="ArtSteward" method="price" toEth /> ETH <br />
-        <br />
-        Current Patron:<br /> <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/></p>
+        <h2>Valued at: <ContractData contract="ArtSteward" method="price" toEth /> ETH (~${this.state.USD} USD) </h2>
+        Current Patron: <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/><br />
+        Time Held: {this.state.currentTimeHeldHumanized} 
         </Fragment>
       )
     }
@@ -30,6 +116,7 @@ PriceSection.propTypes = {
 
 const mapStateToProps = state => {
   return {
+    accounts: state.accounts,
     contracts: state.contracts,
     drizzleStatus: state.drizzleStatus,
     web3: state.web3,
