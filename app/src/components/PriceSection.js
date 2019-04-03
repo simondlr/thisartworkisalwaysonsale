@@ -14,7 +14,6 @@ class PriceSection extends Component {
       this.contracts = context.drizzle.contracts;
       this.state = {
         USD: -1,
-        timeHeld: 0,
         artworkPriceKey: context.drizzle.contracts.ArtSteward.methods.price.cacheCall(),
         patron: null,
         patronKey: context.drizzle.contracts.ERC721Full.methods.ownerOf.cacheCall(42),
@@ -31,13 +30,21 @@ class PriceSection extends Component {
       this.setState({USD});
     }
 
-    async updateTimeHeld(props) {
-      const timeHeld = this.getTimeHeld(props);
+    async updateTimeHeld(props, timeHeldKey) {
       const date = new Date();
-      const currentTimeHeld = parseInt(this.getTimeHeld(props)) + (parseInt(date.getTime()/1000) - parseInt(this.getTimeAcquired(props)));
+      let currentTimeHeld = parseInt(this.getTimeHeld(props, timeHeldKey)) + (parseInt(date.getTime()/1000) - parseInt(this.getTimeAcquired(props)));
+
+      /*
+      note: this is a hack. smart contract didn't store timeAcquired when steward started. 
+      Thus: time held will be very large. It needs to be reduced.
+      */
+      if (props.contracts['ERC721Full']['ownerOf'][this.state.patronKey].value === this.contracts.ArtSteward.address) {
+        const deployedtime = new this.utils.BN('1553202847');
+        currentTimeHeld = new this.utils.BN(currentTimeHeld).sub(deployedtime).toString();
+      }
+
       const currentTimeHeldHumanized = moment.duration(currentTimeHeld, 'seconds').humanize();
       this.setState({
-        timeHeld,
         currentTimeHeld,
         currentTimeHeldHumanized,
       });
@@ -46,8 +53,10 @@ class PriceSection extends Component {
     async updatePatron(props) {
       const patron = this.getPatron(props);
       // update timeHeldKey IF owner updated
+      const timeHeldKey = this.contracts.ArtSteward.methods.timeHeld.cacheCall(patron);
       this.setState({
-        timeHeldKey: this.contracts.ArtSteward.methods.timeHeld.cacheCall(patron),
+        currentTimeHeld: 0,
+        timeHeldKey,
         patron
       });
     }
@@ -64,11 +73,11 @@ class PriceSection extends Component {
       return props.contracts['ArtSteward']['timeAcquired'][this.state.timeAcquiredKey].value;
     }
 
-    getTimeHeld(props) {
-      return props.contracts['ArtSteward']['timeHeld'][this.state.timeHeldKey].value;
+    getTimeHeld(props, timeHeldKey) {
+      return props.contracts['ArtSteward']['timeHeld'][timeHeldKey].value;
     }
 
-    async componentWillReceiveProps(nextProps) {
+    async componentWillUpdate(nextProps, nextState) {
       if (this.state.patronKey in this.props.contracts['ERC721Full']['ownerOf']
       && this.state.patronKey in nextProps.contracts['ERC721Full']['ownerOf']) {
         if(this.getPatron(this.props) !== this.getPatron(nextProps) || this.state.patron === null) {
@@ -86,8 +95,8 @@ class PriceSection extends Component {
 
       if(this.state.timeHeldKey in this.props.contracts['ArtSteward']['timeHeld']
       && this.state.timeHeldKey in nextProps.contracts['ArtSteward']['timeHeld']) {
-        if(this.getTimeHeld(this.props) !== this.getTimeHeld(nextProps) || this.state.timeHeld === 0) {
-          this.updateTimeHeld(nextProps);
+        if(this.getTimeHeld(this.props, this.state.timeHeldKey) !== this.getTimeHeld(nextProps, this.state.timeHeldKey) || this.state.currentTimeHeld === 0) {
+          this.updateTimeHeld(nextProps, this.state.timeHeldKey);
         }
       }
     }
@@ -97,7 +106,7 @@ class PriceSection extends Component {
         <Fragment>
         <h2>Valued at: <ContractData contract="ArtSteward" method="price" toEth /> ETH (~${this.state.USD} USD) </h2>
         Current Patron: <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/><br />
-        Time Held: {this.state.currentTimeHeldHumanized} 
+        Total Time Held: {this.state.currentTimeHeldHumanized} 
         </Fragment>
       )
     }

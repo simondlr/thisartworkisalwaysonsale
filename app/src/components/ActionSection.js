@@ -1,6 +1,7 @@
 import { drizzleConnect } from "drizzle-react";
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import moment from "moment"
 
 import ContractForm from "./ContractForm";
 import DepositWeiForm from "./DepositWeiForm";
@@ -16,6 +17,7 @@ class ActionSection extends Component {
       totalCollectedKey: context.drizzle.contracts.ArtSteward.methods.totalCollected.cacheCall(),
       patronageOwed: -1,
       combinedCollected: -1,
+      foreclosureTime: "N/A"
     };
   }
 
@@ -38,6 +40,17 @@ class ActionSection extends Component {
   }
 
   async componentWillReceiveProps(nextProps) {
+    if(this.props.contracts['ArtSteward']['price']['0x0'] !== nextProps.contracts['ArtSteward']['price']['0x0']) {
+      if (nextProps.contracts['ArtSteward']['price']['0x0'].value === '0') {
+        this.setState({
+          foreclosureTime: "N/A"
+        });
+      } else {
+        const foreclosureTime = moment(parseInt(await this.contracts.ArtSteward.methods.foreclosureTime().call())*1000).toString();
+        this.setState({foreclosureTime});
+      }
+    }
+
     if (this.state.patronageOwedKey in this.props.contracts['ArtSteward']['patronageOwed']
     && this.state.patronageOwedKey in nextProps.contracts['ArtSteward']['patronageOwed']
     && this.state.totalCollectedKey in this.props.contracts['ArtSteward']['totalCollected']
@@ -54,7 +67,7 @@ class ActionSection extends Component {
       <h2>Current Patron Details:</h2>
         <p>Address: <ContractData contract="ERC721Full" method="ownerOf" methodArgs={[42]}/></p>
         <p>Available Deposit: <ContractData contract="ArtSteward" method="depositAbleToWithdraw" toEth /> ETH</p>
-        <p>Foreclosure Time: <ContractData contract="ArtSteward" method="foreclosureTime" toDate /></p>
+        <p>Foreclosure Time: {this.state.foreclosureTime}</p>
         <p>The current deposit will cover the patronage until the time above. At this time, the smart contract steward takes ownership of the artwork and sets its price back to zero.</p>
         <p>Once it crosses this time period, the patron can't top up their deposit anymore and is effectively foreclosed.</p>
       <h2>Actions:</h2>

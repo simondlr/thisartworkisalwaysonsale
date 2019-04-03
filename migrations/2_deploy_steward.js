@@ -13,9 +13,10 @@ module.exports = function(deployer, network, accounts) {
       return deployer.deploy(ArtSteward, artistAccount, deployedArtwork.address);
     });
   } else {
-    /*deployer.deploy(Artwork, "ThisArtworkIsAlwaysOnSale", "TAIAOS").then((deployedArtwork) => {
+    // development deploy
+    deployer.deploy(Artwork, "ThisArtworkIsAlwaysOnSale", "TAIAOS").then((deployedArtwork) => {
       return deployer.deploy(ArtSteward, accounts[0], deployedArtwork.address);
-    });*/
+    });
   }
 
 };
