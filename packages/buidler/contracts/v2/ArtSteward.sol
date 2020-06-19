@@ -226,7 +226,7 @@ contract ArtSteward {
     }
 
     function changePrice(uint256 _newPrice) public collectPatronage onlyPatron {
-        require(_newPrice > 0, 'Price is zero'); // negative price?
+        require(_newPrice > 0, 'Price is zero'); 
         price = _newPrice;
         emit LogPriceChange(price);
     }

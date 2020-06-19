@@ -34,9 +34,9 @@ This smart contract is responsible for managing ownership over the artwork. It t
 Running Locally:
 
 In root folder:
-- Install modules:
+- Install modules:  
   ```yarn install```
-- If you have a separate mnemonic, add to it to env.
+- If you have a separate mnemonic, add to it to env.  
   ```export MNEMONIC="<insert_your_own_mnemonic_here>```  
   ```yarn run node```  
 - In a separate window, init openzeppelin & deploy contracts. Initialization is simple. Choose a name + project version.  
