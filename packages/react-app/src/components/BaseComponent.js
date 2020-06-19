@@ -80,7 +80,7 @@ function BaseComponent(props) {
           The digital artwork above is always on sale.<br />
           In order to own this artwork, you always have to specify a sale price. <br />
           Anyone can buy it from the current patron at any time for the specified sale price. <br />
-          Whilst held, a 5% fee (pa) is levied as patronage towards the artist. <br />
+          Whilst held, a fee (based on the patronage rate) is constantly levied, per second, as patronage towards the artist. <br />
         </p>
         {/* V1 BUG SECTION */}
         {bugSection}
