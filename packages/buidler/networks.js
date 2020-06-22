@@ -1,6 +1,6 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const mnemonic = process.env.MNEMONIC;
-const infuraID = process.env.INFURA_ID;
+const mnemonic = process.env.MNEMONIC; // only used in development
+const infuraID = process.env.REACT_APP_INFURA_ID; // same here, but needs to be transferred to production build too
 
 module.exports = {
   networks: {

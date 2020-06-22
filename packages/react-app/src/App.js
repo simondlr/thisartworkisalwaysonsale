@@ -20,7 +20,7 @@ import ArtStewardJSON_V1 from "./contracts/ArtSteward_V1.json";
 
 import moment from "moment";
 
-const mainnetProvider = new ethers.providers.InfuraProvider("mainnet",process.env.INFURA_ID);
+const mainnetProvider = new ethers.providers.InfuraProvider("mainnet",process.env.REACT_APP_INFURA_ID);
 // const localProvider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_PROVIDER?process.env.REACT_APP_PROVIDER:"http://localhost:8545")
 
 // change to mainnet on prod
@@ -91,7 +91,7 @@ function App() {
   usePoller(()=>{pollInjectedProvider()},1999);
 
   useEffect(()=>{
-    console.log('test env var for netlify', process.env.TEST_ENV_VAR);
+    console.log('test env var for netlify', process.env.REACT_APP_TEST_ENV_VAR);
     setInterval(()=>{pollBlockNumber()},3999);
   }, [hardcodedChainId]); //
 

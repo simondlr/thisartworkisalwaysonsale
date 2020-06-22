@@ -8,7 +8,7 @@ import { usePoller } from "../hooks"
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { Button } from 'antd';
 
-const INFURA_ID = process.env.INFURA_ID;
+const INFURA_ID = process.env.REACT_APP_INFURA_ID;
 
 const web3Modal = new Web3Modal({
   //network: "mainnet", // optional
