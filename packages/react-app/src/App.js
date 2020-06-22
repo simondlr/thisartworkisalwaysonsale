@@ -91,7 +91,6 @@ function App() {
   usePoller(()=>{pollInjectedProvider()},1999);
 
   useEffect(()=>{
-    console.log('test env var for netlify', process.env.REACT_APP_TEST_ENV_VAR);
     setInterval(()=>{pollBlockNumber()},3999);
   }, [hardcodedChainId]); //
 
