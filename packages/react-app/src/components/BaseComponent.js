@@ -15,22 +15,11 @@ function BaseComponent(props) {
 
     const wrongNetworkHML = <Fragment>You are on the wrong network to interact with the artwork. Please switch to the correct network.</Fragment>;
 
-    const bugSection = props.art.v === 'v1' ? 
+    const restorationSection = props.art.v === 'v1' ? 
       <Fragment>
-        <h2>PROCEED WITH EXTREME CAUTION</h2>
-        The original version contains a few medium-severity bugs that could affect buying and selling of this artwork.<br />
+        <h2>Restoration</h2>
+        This artwork was damaged, and went through a digital restoration. The damaged canvas is now irrevocably fused into this version. It's the first digital artwork that's always on sale that underwent a unique restoration procedure. <br />
         <br />
-        <h3>Front-running: </h3>
-        - If you choose to buy, a malicious user could front-run the buy, and steal part of your deposit, by raising the price, before your buy is executed. 
-        To protect against this, initially submit a small deposit. That being said: topping up deposit is also vulnerable.<br />
-        - In the same manner, if you choose to top-up your deposit, a malicious user can buy the artwork before it is executed, and the deposit would still go through afterwards (effectively stealing the deposit).<br />
-        Thus: extreme caution needs to be undertaken to ensure you won't be front-run when buying or topping up the deposit. Buying this artwork is NOT recommended for casual users. <br />
-       <h3>Blocking Buying: </h3>
-        - If a user buys this artwork from a contract that reverts on ETH sends, it can hold the artwork forever (until their deposit runs out), effectively blocking sale of the artwork.<br />
-        - Due to this: the artwork could have a price of 1 wei, and effectively never be sold again in our lifetimes.<br />
-        <br />
-        Due to these edge-cases, this artwork should only be bought/sold with extreme caution. To continue this being an experiment, it remains on sale.<br />
-        <a href="https://github.com/simondlr/thisartworkisalwaysonsale/issues/18">More details on Github.</a><br />
       </Fragment> : <Fragment></Fragment>
 
     const offlineHTML = <Fragment>
@@ -83,7 +72,7 @@ function BaseComponent(props) {
           Whilst held, a fee (based on the patronage rate) is constantly levied, per second, as patronage towards the artist. <br />
         </p>
         {/* V1 BUG SECTION */}
-        {bugSection}
+        {restorationSection}
         {/* BUYING ART SECTION */}
         <h2>Buy Artwork</h2>
         <div className="section">

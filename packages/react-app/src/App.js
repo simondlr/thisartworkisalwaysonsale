@@ -16,7 +16,6 @@ import Transactor from "./helpers/Transactor.js";
 // Artifacts
 import ERC721JSON from "./contracts/ERC721.json";
 import ArtStewardJSON from "./contracts/ArtSteward.json";
-import ArtStewardJSON_V1 from "./contracts/ArtSteward_V1.json";
 
 import moment from "moment";
 
@@ -51,9 +50,16 @@ function App() {
   const [hardcodedChainId, setHardcodedChainId] = useState(null);
   const [hardcodedBlockNumber, setHardcodedBlockNumber] = useState(null);
 
-  // v1 on mainnet
-  const v1StewardAddress = "0x74E6Ab057f8a9Fd9355398a17579Cd4c90aB2B66";
-  const v1ERC721Address = "0x6d7C26F2E77d0cCc200464C8b2040c0B840b28a2";
+  // Damaged v1 on mainnet
+  // const v1StewardAddress = "0x74E6Ab057f8a9Fd9355398a17579Cd4c90aB2B66";
+  // const v1ERC721Address = "0x6d7C26F2E77d0cCc200464C8b2040c0B840b28a2";
+  
+  // Restored V1
+  const v1StewardAddress = "0xB602c0bBfaB973422B91C8dfc8302B7b47550fC0";
+  const v1ERC721Address = "0x2b4fA931ADc5D6b58674230208787A3dF0bD2121";
+
+  const v2StewardAddress = "0x595f2c4e9e3e35B0946394A714c2CD6875C04988";
+  const v2ERC721Address = "0xE51a7572323040792ba69B2DC4096e8e6B22fDD4";
 
   // artist: 0x0CaCC6104D8Cd9d7b2850b4f35c65C1eCDEECe03
 
@@ -122,14 +128,14 @@ function App() {
         if(hardcodedChainId !== null) {
 
             //v1 (hardcoded to mainnet):
-            const stewardV1 = new ethers.Contract(v1StewardAddress, ArtStewardJSON_V1.abi, mainnetProvider);
+            const stewardV1 = new ethers.Contract(v1StewardAddress, ArtStewardJSON.abi, mainnetProvider);
             const artworkV1 = new ethers.Contract(v1ERC721Address, ERC721JSON.abi, mainnetProvider);
             const updatedValuesV1 = { steward: stewardV1, artwork: artworkV1, v: "v1" };
             setArtV1((prevState) => { return {...prevState, ...updatedValuesV1}});
 
             //v2 (loaded from artifacts):
-            const stewardV2 = new ethers.Contract(ArtStewardJSON.networks[hardcodedChainId].address, ArtStewardJSON.abi, hardcodedProvider);
-            const artworkV2 = new ethers.Contract(ERC721JSON.networks[hardcodedChainId].address, ERC721JSON.abi, hardcodedProvider);
+            const stewardV2 = new ethers.Contract(v2StewardAddress, ArtStewardJSON.abi, hardcodedProvider);
+            const artworkV2 = new ethers.Contract(v2ERC721Address, ERC721JSON.abi, hardcodedProvider);
             const updatedValuesV2 = { steward: stewardV2, artwork: artworkV2, v: "v2" };
             setArtV2((prevState) => { return {...prevState, ...updatedValuesV2}});
         }
@@ -142,8 +148,8 @@ function App() {
     async function loadSigners() {
       if(injectedChainId !== null) {
         const signer = await injectedProvider.getSigner();
-        const signerStewardV1 = new ethers.Contract(v1StewardAddress , ArtStewardJSON_V1.abi, signer);
-        const signerStewardV2 = new ethers.Contract(ArtStewardJSON.networks[injectedChainId].address, ArtStewardJSON.abi, signer);
+        const signerStewardV1 = new ethers.Contract(v1StewardAddress , ArtStewardJSON.abi, signer);
+        const signerStewardV2 = new ethers.Contract(v2StewardAddress, ArtStewardJSON.abi, signer);
 
         const updatedValuesV1 = { signerSteward: signerStewardV1 };
         const updatedValuesV2 = { signerSteward: signerStewardV2 };

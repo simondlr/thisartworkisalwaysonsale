@@ -9,6 +9,15 @@ function IntroComponent(props) {
     return (
         <div className="App"> 
         <h1>These Artworks Are Always* On Sale.</h1> 
+        <h2>Original. 21 March 2019. </h2>
+        <img src={artworkv1} style={{maxWidth: "100%", maxHeight: "100%"}} alt="A R T" />
+        <h2>Valued at:  {props.artV1.artPriceETH} ETH (~${props.artV1.artPriceUSD} USD) </h2>
+        Patronage Rate: 5% per annum of sale price.<br />
+        Current Patron: {props.artV1.patron} <br />
+        Time Held By Patron: {props.artV1.timeHeldHumanized} <br />
+        <br />
+        <Link to="/v1"><Button type="primary">More Details</Button></Link> <br />
+        <hr />
         <h2>2020 Edition. June 2020. </h2>
         <img src={artworkv2} style={{maxWidth: "100%", maxHeight: "100%"}} alt="A R T" />
         <h2>Valued at:  {props.artV2.artPriceETH} ETH (~${props.artV2.artPriceUSD} USD) </h2>
@@ -18,16 +27,7 @@ function IntroComponent(props) {
         <br />
         <Link to="/v2"><Button type="primary">More Details</Button></Link> <br />
         <hr />
-        <h2>Original. 21 March 2019. </h2>
-        <img src={artworkv1} style={{maxWidth: "100%", maxHeight: "100%"}} alt="A R T" />
-        <h2>Valued at:  {props.artV1.artPriceETH} ETH (~${props.artV1.artPriceUSD} USD) </h2>
-        Patronage Rate: 5% per annum of sale price.<br />
-        Current Patron: {props.artV1.patron} <br />
-        Time Held By Patron: {props.artV1.timeHeldHumanized} <br />
-        <br />
-        <Link to="/v1"><Button type="primary">More Details</Button></Link> <br />
-        *Note: The original edition has a few edge-case bugs. If exploited, it will function differently. Caution is highly advised. More details on the artwork page.
-        <hr />
+
         <div className="section">
         <h2>About The Artworks:</h2>
         First launched on March 21, 2019, these artworks explore digital art with novel property rights associated with it.
@@ -45,7 +45,7 @@ function IntroComponent(props) {
         <br />
         For more information, read this article: <a href="https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43">https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43</a><br />
         <br />
-        The first artwork has a patronage rate of 5%, and has a few bugs in it. Thus: a new edition was created, launched in June 2020, using a new patronage rate of 100% in order to continue experimentation.
+        The first artwork has a patronage rate of 5%. It was restored after it was discovered that it was damaged. A new edition was created, launched in June 2020, using a new patronage rate of 100% in order to continue experimentation.
         You can check out more technical details, fork this project, and create your own artwork here: <br />
         <br />
         <a href="https://github.com/simondlr/thisartworkisalwaysonsale">https://github.com/simondlr/thisartworkisalwaysonsale</a>
