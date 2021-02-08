@@ -3,6 +3,10 @@
 
 ![TAIAOS](https://raw.githubusercontent.com/simondlr/thisartworkisalwaysonsale/master/packages/react-app/src/components/TAIAOS4.png)
 
+Updates: January 2021.
+
+v1 Restored. More detailed notes coming.
+
 New Release: June 2020.
 
 - Launched new artwork with 100% patronage rate.
