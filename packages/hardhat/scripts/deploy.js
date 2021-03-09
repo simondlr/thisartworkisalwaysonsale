@@ -8,7 +8,7 @@ async function main() {
     const artAddress = await artwork.address;
 
     // then deploy Steward that internally sets up the ERC721.
-    const ArtSteward = await ethers.getContractFactory("ArtSteward");
+    const ArtSteward = await ethers.getContractFactory("ArtStewardV2");
 
     // constructor(address payable _artist, address _artwork)
 

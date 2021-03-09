@@ -16,6 +16,10 @@ module.exports = {
     hardhat: {
       accounts: defaultAccounts(),
       gas: 9500000,
+      mining: {
+        auto: false,
+        interval: 5000,
+      },
     },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${infuraID}`,
