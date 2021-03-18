@@ -15,7 +15,6 @@
     "react-app:test": "yarn workspace @taiaos/react-app test",
     "build": "yarn workspace @taiaos/react-app build --max-old-space-size=12288",
     "node": "cd packages/hardhat && npx hardhat node",
-    "mainnet_node": "cd packages/hardhat && npx hardhat node --fork https://mainnet.infura.io/v3/e811479f4c414e219e7673b6671c2aba",
     "deploy_contracts_local": "cd packages/hardhat && npx hardhat run --network localhost scripts/deploy_restorer.js",
     "deploy_v2_local": "cd packages/hardhat && npx hardhat run --network localhost scripts/deploy.js",
     "deploy_contracts_mainnet": "cd packages/hardhat && npx hardhat run --network mainnet scripts/deploy_restorer.js",
