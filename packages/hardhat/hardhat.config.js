@@ -16,6 +16,10 @@ module.exports = {
     hardhat: {
       accounts: defaultAccounts(),
       gas: 9500000,
+      mining: {
+        auto: false,
+        interval: 5000,
+      },
     },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${infuraID}`,
@@ -24,7 +28,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: 'UU4J51IQP66J8AGFK8F3C5V8Y6CCB3MRUX'
+    apiKey: ''
   },
   solc: {
     version : "0.7.6",

@@ -3,9 +3,9 @@
 
 ![TAIAOS](https://raw.githubusercontent.com/simondlr/thisartworkisalwaysonsale/master/packages/react-app/src/components/TAIAOS4.png)
 
-Updates: January 2021.
+Updates: January-March 2021.
 
-v1 Restored. More detailed notes coming.
+- v1 Restored along with a subgraph and design improvements.
 
 New Release: June 2020.
 
@@ -21,11 +21,9 @@ TAIAOS is an art project that showcases a digital artwork that is always on sale
 
 - This repo is forked from https://github.com/austintgriffith/scaffold-eth & extensively modified.
 
-- buidler + waffle + openzeppelin for testing + smart contract development.
-- ethers.js.
-- OpenZeppelin for deployment (optionally can use this to deploy ugpradeable versions of this project).
-- Uses modified ERC721 (only the steward can transfer it). Forked from openzeppling library.
-- Infura for reading chain state.
+- Hardhat + waffle + openzeppelin for testing + smart contract development.
+- Uses modified ERC721 (only the steward can transfer it). Forked from openzeppelin library.
+- Graph Protocol for indexing state.
 - Blocknative for monitoring transactions.
 - web3modal for connecting to wallets.
   
@@ -35,30 +33,29 @@ This smart contract is responsible for managing ownership over the artwork. It t
 
 ### Development & Testing
 
-Running Locally:
+### 1. Start Node + Deploy Contracts 
+```yarn install```  
+```yarn run node```   
+It will use the default mnemonic in ```./scripts/wallet-utils.js``` and start a local EVM.   
+If you need a custom mnemonic, just:   
+```export MNEMONIC="<insert_your_own_mnemonic_here>```   
+```yarn run deploy_contracts_v2_local```    
+Save the addresses manually and copy-paste it to required addresses in react-app/src/App.js.   
 
-In root folder:
-- Install modules:  
-  ```yarn install```
-- If you have a separate mnemonic, add to it to env.  
-  ```export MNEMONIC="<insert_your_own_mnemonic_here>```  
-  ```yarn run node```  
-- In a separate window, init openzeppelin & deploy contracts. Initialization is simple. Choose a name + project version.  
-  ```yarn run init_contracts```
-- Add contracts to the OpenZeppelin configuration. This is necessary to get a proper networks object in the build file (due to a temp bug).  
-  ```yarn run add_contracts```
-- The first artwork will always point to the mainnet one (it's hardcoded). The V2 artwork will be deployed locally (development network).
-- Going through the first prompt: deploy a regular ERC721.   
-  ```yarn run deploy_contracts```
-- Take note of the address. Then, run the command again and deploy the regular ArtSteward.sol, inputting ERC721 address + address of the artist (beneficiary). The latter, you must choose. This can't be changed once initialized.  
-  ```yarn run deploy_contracts```
-- Next step is to publish the contract information/artifacts to the react app. For some reason, it's not properly exiting, so once it's published, just manually exit the process.  
-  ```yarn run publish_contracts```
-- Run the server.  
-  ```yarn run start```
+### 2. Start a local Graph Node.
+Follow [these instructions](https://thegraph.com/docs/quick-start#local-development) to start a local Graph Node. Note: It's not necessary to the ganache steps as hardhat is the chosen EVM. Only, the parts about the Graph Node.  
+```docker-compose up```  
+When you cycle it (in between running the EVM or not), you might have to delete the data. NOT necessary for initial setup.  
+```rm -rf data``` 
 
-- To deploy to a testnet or mainnet, just add or use the existing network in the openzeppelin networks.js. It uses Infura to deploy and thus you also need to export your own Infura ID (like your mnemonic for deployment).  
-  ```export INFURA_ID="<INFURA_ID_HERE>"```
+### 3. Clone and Deploy TAIAOS Subgraph
+In a new folder, git clone [taiaos-subgraph](https://github.com/simondlr/taiaos-subgraph).    
+```yarn run install```  
+If the address differs, you must copy it from hardhat and put into the subgraph.yaml. NOTE: the subgraph.yaml needs to be modified to only include 1 set of artwork+steward combination. The subgraph.yaml is currently set up for this specific mainnet implementation.
+```yarn run codegen```  
+```yarn run build``` 
+```yarn run create-local```  
+```yarn run deploy-local``` 
 
 ### New Markets In The Arts
 

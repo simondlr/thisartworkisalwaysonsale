@@ -51,6 +51,7 @@ export default function Transactor(provider,gasPrice,etherscan) {
         if([1,3,4,5,42].indexOf(network.chainId)>=0){
           const { emitter } = notify.hash(result.hash)
           emitter.on('all', (transaction) => {
+            console.log('tx event fired');
             return {
               onclick: () =>
               window.open((etherscan?etherscan:etherscanTxUrl)+transaction.hash),
