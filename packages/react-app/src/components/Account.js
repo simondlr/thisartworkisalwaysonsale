@@ -64,11 +64,11 @@ export default function Account(props) {
   let modalButtons = []
   if (web3Modal.cachedProvider) {
     modalButtons.push(
-      <Button key="logoutbutton" style={{verticalAlign:"top",marginLeft:8,marginTop:4}} size={"large"} type={"primary"} onClick={logoutOfWeb3Modal}>Log Out</Button>
+      <Button key="logoutbutton" type={"primary"} onClick={logoutOfWeb3Modal}>LOG OUT</Button>
     )
   }else{
     modalButtons.push(
-      <Button key="loginbutton" style={{verticalAlign:"top",marginLeft:8,marginTop:4}} size={"large"} type={"primary"} onClick={loadWeb3Modal}>Connect Wallet</Button>
+      <Button key="loginbutton" type={"primary"} onClick={loadWeb3Modal}>CONNECT WALLET</Button>
     )
   }    
   
@@ -79,10 +79,9 @@ export default function Account(props) {
 
   return (
     <div className="account">
-      <span className="accountLink"><Link to="/">HOME</Link></span>
+      <span className="accountLink"><Link style={{verticalAlign:'middle'}} to="/">THIS ARTWORK IS ALWAYS ON SALE</Link></span>
       {displayAddress}
       {modalButtons}
-      <hr />
     </div>
   );
   

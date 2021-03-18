@@ -28,7 +28,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: 'UU4J51IQP66J8AGFK8F3C5V8Y6CCB3MRUX'
+    apiKey: ''
   },
   solc: {
     version : "0.7.6",

@@ -27,6 +27,11 @@ function ActionForms(props) {
       console.log('whole', values);
       props.withdrawWholeDeposit(values);
     };
+
+    const collectPatronage = (values) => {
+      console.log('whole', values);
+      props.collectPatronage(values);
+    };
   
     return (
       <div>
@@ -37,7 +42,7 @@ function ActionForms(props) {
           <Form.Item noStyle name="v" >
             <Input type='hidden'/>
           </Form.Item>
-          <Form.Item label="Change Price" rules={[{required: true}]}> 
+          <Form.Item label="" rules={[{required: true}]}> 
           <Form.Item name= "newPrice" noStyle rules={[
               { required: true,  message: "New Price Required!"}
               ]}>
@@ -58,7 +63,7 @@ function ActionForms(props) {
           <Form.Item noStyle name="v" >
             <Input type='hidden'/>
           </Form.Item>
-          <Form.Item label="Add To Deposit" rules={[{required: true}]}> 
+          <Form.Item label="" rules={[{required: true}]}> 
           <Form.Item name= "topupDeposit" noStyle rules={[
               { required: true,  message: "Additional Deposit Required!"}
               ]}>
@@ -67,7 +72,7 @@ function ActionForms(props) {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Top Up Deposit
+              Top Up ETH To Deposit
             </Button>
           </Form.Item>
         </Form><br />
@@ -79,7 +84,7 @@ function ActionForms(props) {
           <Form.Item noStyle name="v" >
             <Input type='hidden'/>
           </Form.Item>
-          <Form.Item label="Withdraw Deposit" rules={[{required: true}]}> 
+          <Form.Item label="" rules={[{required: true}]}> 
           <Form.Item name= "withdrawSomeDeposit" noStyle rules={[
               { required: true,  message: "Amount Required!"}
               ]}>
@@ -101,10 +106,10 @@ function ActionForms(props) {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Withdraw Whole Deposit And Foreclose
+              Withdraw Entire Deposit And Foreclose
             </Button>
           </Form.Item>
-        </Form>
+        </Form><br />
       </div>
     );
 }

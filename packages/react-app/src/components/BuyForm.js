@@ -5,7 +5,8 @@ function BuyForm(props) {
     const [form] = Form.useForm();
 
       const onFinish = (values) => {
-        console.log(values);
+        values.artPriceETH = props.artPriceETH;
+        console.log('onfinish', values);
         props.BuyArt(values);
       };
     
@@ -17,6 +18,10 @@ function BuyForm(props) {
             <Input type='hidden'/>
           </Form.Item>
 
+          <Form.Item noStyle name="artPriceETH" >
+            <Input type='hidden'/>
+          </Form.Item>
+
           <Form.Item label="New Sale Price" rules={[{required: true}]}> 
           <Form.Item name= "newSalePrice" noStyle rules={[
               { required: true,  message: "ETH Price Required!"}
@@ -24,7 +29,7 @@ function BuyForm(props) {
             <InputNumber /> 
           </Form.Item> <span>ETH</span>
           </Form.Item>
-          <Form.Item label="Deposit" rules={[{ required: true }]}>
+          <Form.Item label="Initial Deposit" rules={[{ required: true }]}>
           <Form.Item name="deposit" noStyle rules={[
               { required: true,  message: "Deposit Required!"}
               ]}>

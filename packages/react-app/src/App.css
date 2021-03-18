@@ -1,6 +1,6 @@
 .App {
   text-align: left;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0px auto auto;
 }
 
@@ -12,11 +12,18 @@
 
 .account {
   text-align: right;
+  height: 50px;
   max-width: 500px;
   margin: 20px auto 4px;
 }
 
 .accountLink {
-  margin-top: 10px;
+  margin-top: 4px;
   float: left;
+}
+
+.gallery {
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
