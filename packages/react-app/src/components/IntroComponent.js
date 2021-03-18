@@ -140,8 +140,8 @@ function IntroComponent(props) {
         </div>
         <hr />
         <div className="section">
-        <h2>About The Artworks:</h2>
-        First launched on March 21, 2019, these NFT artworks explore digital art with novel property rights associated with it.
+        <h2>THE ARTWORKS:</h2>
+        First launched on March 21, 2019, these NFT, digital artworks explore digital art with novel property rights associated with it.
         Using the Ethereum blockchain, it is possible to introduce scarcity of ownership alongside novel
         economic and property rights. Inspired by Radical Markets, this artwork follows a modified Harberger Tax (COST) property
         ownership where the tax on the property (patronage) is collected only by the artist. It is perpetual royalty. 
@@ -165,14 +165,14 @@ function IntroComponent(props) {
         <hr />
         {/* ARTIST SECTION */}
         <div className="section">
-        <h2>About The Artist:</h2>
+        <h2>THE ARTIST:</h2>
         I'm a creator at heart.
         I have created games, writing, music, code, companies, and new economics. Solving the problems of the creator 
         has always been important to me. In the past I co-founded Ujo Music,
         working with Grammy-winning artists such as Imogen Heap and RAC to launch the first music royalty projects using smart contracts. I've
         helped kickstart wholly new markets and economies. I helped to create the Ethereum ERC20 token standard and token bonding curves, technologies 
         that's currently facilitating economies worth several billion dollars of value.
-        I enjoy creating new forms of art and experimenting with ways to empower the creative industry.
+        I enjoy creating new forms of art and experimenting with ways to empower creatives.
         <br />
         <br />
         Swing me a follow on Twitter! <a href="https://twitter.com/simondlr">@simondlr</a>.<br />
