@@ -163,6 +163,16 @@ function IntroComponent(props) {
         <a href="https://github.com/simondlr/thisartworkisalwaysonsale">https://github.com/simondlr/thisartworkisalwaysonsale</a>
         </div>
         <hr />
+        {/* PRESS SECTION */}
+        <div className="section">
+        <h2>PRESS/MENTIONS:</h2>
+        artnet (2021): <a href="https://news.artnet.com/opinion/artists-blockchain-resale-royalties-1956903">"Artists Have Been Attempting to Secure Royalties on Their Work for More Than a Century. Blockchain Finally Offers Them a Breakthrough." </a> <br />
+        AMTLab (2021): <a href="https://amt-lab.org/blog/2021/9/nft-considerations-and-implications">"NFTs Legal Considerations And Implications"</a> <br />
+        CLOTmag (2021): <a href="https://www.clotmag.com/oped/talking-about-art-and-the-blockchain-by-charlotte-kent">"‘Talking about Art and the Blockchain’ by Charlotte Kent"</a> <br />
+        ParaSite Hong Kong (2019): <a href="https://www.youtube.com/watch?v=all1wr0Gk7o">"This Artwork is Always on Sale: A Crypto Story"</a> <br />
+        CoinDesk (2019): <a href="https://www.coindesk.com/markets/2019/03/26/the-radicalxchange-movements-crypto-cypherpunk-appeal/">"The RadicalxChange Movement's Crypto-Cypherpunk Appeal"</a> <br />
+        </div>
+        <hr />
         {/* ARTIST SECTION */}
         <div className="section">
         <h2>THE ARTIST:</h2>
