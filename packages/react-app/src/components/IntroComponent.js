@@ -121,7 +121,7 @@ function IntroComponent(props) {
         <h3>Original (2019). Restored (2021).</h3>
         Valued at:  {ethers.utils.formatEther(savedData.v1.currentPrice)} ETH (~${modifiedData.v1.USD} USD)<br />
         Currently held by {savedData.v1.currentPatron.id}. <br />
-        They've held it for a lifetime of {modifiedData.v1.timeHeldHumanized} thus far. <br />
+        They've held it for a lifetime of {modifiedData.v1.timeHeldHumanized} thus far. {savedData.v1.currentPatron.id === "0xb602c0bbfab973422b91c8dfc8302b7b47550fc0" ? "Currently Foreclosed, Held by Smart Contract.": ""}<br />
         Patronage Rate: 5% per annum of sale price.<br />
         <br />
         <Link to="/v1"><Button >More Details</Button></Link> <br />
@@ -133,7 +133,7 @@ function IntroComponent(props) {
         <h3>V2 (2020)</h3>
         Valued at:  {ethers.utils.formatEther(savedData.v2.currentPrice)} ETH (~${modifiedData.v2.USD} USD) <br />
         Currently held by {savedData.v2.currentPatron.id}. <br />
-        They've held it for a lifetime of {modifiedData.v2.timeHeldHumanized} thus far. <br />
+        They've held it for a lifetime of {modifiedData.v2.timeHeldHumanized} thus far. {savedData.v2.currentPatron.id === "0x595f2c4e9e3e35b0946394a714c2cd6875c04988" ? "Currently Foreclosed, Held by Smart Contract.": ""}<br />
         Patronage Rate: 100% per annum of sale price.<br />
         <br />
         <Link to="/v2"><Button >More Details</Button></Link> <br />
