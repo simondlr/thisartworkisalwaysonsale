@@ -166,6 +166,8 @@ function IntroComponent(props) {
         {/* PRESS SECTION */}
         <div className="section">
         <h2>PRESS/MENTIONS:</h2>
+        Ethereal Aether. State Hermitage (2021): <a href="https://celestialhermitage.ru/en/">Celestial Hermitage</a> <br />
+        Bijutsu Techo (2021): <a href="https://bijutsu.press/books/4892/">特集 「NFTアート」ってなんなんだ？！(Special Feature What is "NFT Art"? !) </a> <br />
         artnet (2021): <a href="https://news.artnet.com/opinion/artists-blockchain-resale-royalties-1956903">"Artists Have Been Attempting to Secure Royalties on Their Work for More Than a Century. Blockchain Finally Offers Them a Breakthrough." </a> <br />
         AMTLab (2021): <a href="https://amt-lab.org/blog/2021/9/nft-considerations-and-implications">"NFTs Legal Considerations And Implications"</a> <br />
         CLOTmag (2021): <a href="https://www.clotmag.com/oped/talking-about-art-and-the-blockchain-by-charlotte-kent">"‘Talking about Art and the Blockchain’ by Charlotte Kent"</a> <br />
