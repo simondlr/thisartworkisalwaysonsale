@@ -124,7 +124,7 @@ function App() {
 
       if(values.v === 'v1') { 
         console.log('v1 buyng'); 
-        tx(signerSteward.functions.buy(salePriceInWeiBN, {value: totalETH })); } 
+        tx(signerSteward.functions.buy(salePriceInWeiBN, artPriceETHBN, {value: totalETH })); } 
       else if(values.v === 'v2') { tx(signerSteward.functions.buy(salePriceInWeiBN, artPriceETHBN, {value: totalETH }));}
   }
 
