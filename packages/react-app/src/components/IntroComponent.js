@@ -166,6 +166,7 @@ function IntroComponent(props) {
         {/* PRESS SECTION */}
         <div className="section">
         <h2>PRESS/MENTIONS:</h2>
+        Lumen Prize Longlist. NFT Award. (2022): <a href="https://www.lumenprize.com/2022-nft-award-longlist">2022 NFT Award Longlist</a> <br />
         Ethereal Aether. State Hermitage (2021): <a href="https://celestialhermitage.ru/en/">Celestial Hermitage</a> <br />
         Bijutsu Techo (2021): <a href="https://bijutsu.press/books/4892/">特集 「NFTアート」ってなんなんだ？！(Special Feature What is "NFT Art"? !) </a> <br />
         artnet (2021): <a href="https://news.artnet.com/opinion/artists-blockchain-resale-royalties-1956903">"Artists Have Been Attempting to Secure Royalties on Their Work for More Than a Century. Blockchain Finally Offers Them a Breakthrough." </a> <br />
