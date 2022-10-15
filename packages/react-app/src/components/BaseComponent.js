@@ -223,8 +223,11 @@ function BaseComponent(props) {
         <br /><br />
         <div className="section">
           <h2>VALUED AT:  {ethers.utils.formatEther(savedData.steward.currentPrice)} ETH (~${modifiedData.steward.USD} USD) </h2>
-          Currently held by: {savedData.steward.currentPatron.id} <br />
-          They've held it for a lifetime of {modifiedData.steward.timeHeldHumanized} thus far. {savedData.steward.currentPatron.id === "0x595f2c4e9e3e35b0946394a714c2cd6875c04988" ||  savedData.steward.currentPatron.id === "0xb602c0bbfab973422b91c8dfc8302b7b47550fc0" ? "Currently Foreclosed, Held by Smart Contract.": ""}<br />
+          {savedData.steward.currentPatron.id === "0xb602c0bbfab973422b91c8dfc8302b7b47550fc0" || savedData.steward.currentPatron.id === "0x595f2c4e9e3e35b0946394a714c2cd6875c04988"
+            ? <Fragment>This artwork was recently foreclosed and is in control of the smart contract steward. It has not been bought for 0 ETH for: {modifiedData.steward.timeHeldHumanized}</Fragment>
+            : <Fragment>Currently held by {savedData.steward.currentPatron.id}. <br />They've held it for a lifetime of {modifiedData.steward.timeHeldHumanized} thus far.</Fragment>
+        }
+        <br />
           Patronage Rate: {rate} per annum of current sale price, paid per block. <br />
           <hr />
           <p>

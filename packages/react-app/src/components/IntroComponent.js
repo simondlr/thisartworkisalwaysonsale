@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "antd";
 import artworkv1 from "./TAIAOS4.png";
@@ -118,10 +118,13 @@ function IntroComponent(props) {
         <img src={artworkv1} className="gallery" alt="A R T" />
         <br /><br />
         <div className="section">
-        <h3>Original (2019). Restored (2021).</h3>
+        <h3>Original (2019). Restored (2021).</h3> 
         Valued at:  {ethers.utils.formatEther(savedData.v1.currentPrice)} ETH (~${modifiedData.v1.USD} USD)<br />
-        Currently held by {savedData.v1.currentPatron.id}. <br />
-        They've held it for a lifetime of {modifiedData.v1.timeHeldHumanized} thus far. {savedData.v1.currentPatron.id === "0xb602c0bbfab973422b91c8dfc8302b7b47550fc0" ? "Currently Foreclosed, Held by Smart Contract.": ""}<br />
+        {savedData.v1.currentPatron.id === "0xb602c0bbfab973422b91c8dfc8302b7b47550fc0"
+            ? <Fragment>This artwork was recently foreclosed and is in control of the smart contract steward. It has not been bought for 0 ETH for: {modifiedData.v1.timeHeldHumanized}</Fragment>
+            : <Fragment>Currently held by {savedData.v1.currentPatron.id}. <br />They've held it for a lifetime of {modifiedData.v1.timeHeldHumanized} thus far.</Fragment>
+        }
+        <br />
         Patronage Rate: 5% per annum of sale price.<br />
         <br />
         <Link to="/v1"><Button >More Details</Button></Link> <br />
@@ -132,8 +135,12 @@ function IntroComponent(props) {
         <div className="section">
         <h3>V2 (2020)</h3>
         Valued at:  {ethers.utils.formatEther(savedData.v2.currentPrice)} ETH (~${modifiedData.v2.USD} USD) <br />
-        Currently held by {savedData.v2.currentPatron.id}. <br />
-        They've held it for a lifetime of {modifiedData.v2.timeHeldHumanized} thus far. {savedData.v2.currentPatron.id === "0x595f2c4e9e3e35b0946394a714c2cd6875c04988" ? "Currently Foreclosed, Held by Smart Contract.": ""}<br />
+        
+        {savedData.v2.currentPatron.id === "0x595f2c4e9e3e35b0946394a714c2cd6875c04988"
+            ? <Fragment>This artwork was recently foreclosed and is in control of the smart contract steward. It has not been bought for 0 ETH for: {modifiedData.v2.timeHeldHumanized}</Fragment>
+            : <Fragment>Currently held by {savedData.v2.currentPatron.id}. <br />They've held it for a lifetime of {modifiedData.v2.timeHeldHumanized} thus far.</Fragment>
+        }
+        <br />
         Patronage Rate: 100% per annum of sale price.<br />
         <br />
         <Link to="/v2"><Button >More Details</Button></Link> <br />
