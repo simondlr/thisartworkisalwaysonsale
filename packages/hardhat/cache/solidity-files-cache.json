@@ -2,7 +2,7 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/ArtSteward.sol": {
-      "lastModificationDate": 1612787738290,
+      "lastModificationDate": 1639432581674,
       "contentHash": "3f35ec00f2de5efc47a9e824110b3469",
       "sourceName": "contracts/v1/ArtSteward.sol",
       "solcConfig": {
@@ -18,7 +18,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -39,7 +40,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/interfaces/IERC721.sol": {
-      "lastModificationDate": 1610357297178,
+      "lastModificationDate": 1639432581675,
       "contentHash": "02a602219134f92fd7eac8a28425e99b",
       "sourceName": "contracts/v1/interfaces/IERC721.sol",
       "solcConfig": {
@@ -55,7 +56,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -75,7 +77,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/utils/SafeMath.sol": {
-      "lastModificationDate": 1610095268337,
+      "lastModificationDate": 1639432581676,
       "contentHash": "c96d6e754672607e68a2880622116e51",
       "sourceName": "contracts/v1/utils/SafeMath.sol",
       "solcConfig": {
@@ -91,7 +93,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -109,7 +112,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/interfaces/IERC165.sol": {
-      "lastModificationDate": 1610095237737,
+      "lastModificationDate": 1639432581675,
       "contentHash": "07f7b198bd9c17ce59b356c976043c06",
       "sourceName": "contracts/v1/interfaces/IERC165.sol",
       "solcConfig": {
@@ -125,7 +128,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -143,7 +147,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/Router.sol": {
-      "lastModificationDate": 1610109463632,
+      "lastModificationDate": 1639432581675,
       "contentHash": "f81d2e86d626fc81fd27032221e60420",
       "sourceName": "contracts/v1/Router.sol",
       "solcConfig": {
@@ -159,7 +163,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -179,7 +184,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/BlockReceiver.sol": {
-      "lastModificationDate": 1610109445259,
+      "lastModificationDate": 1639432581674,
       "contentHash": "32bfc0412627f47de7a1ec0841f0c768",
       "sourceName": "contracts/v1/BlockReceiver.sol",
       "solcConfig": {
@@ -195,7 +200,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -215,7 +221,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/ERC721.sol": {
-      "lastModificationDate": 1612787652996,
+      "lastModificationDate": 1639432581674,
       "contentHash": "5af6eb7719022920aeaaee5a2adf0a8a",
       "sourceName": "contracts/v1/ERC721.sol",
       "solcConfig": {
@@ -231,7 +237,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -259,7 +266,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/interfaces/IERC721Metadata.sol": {
-      "lastModificationDate": 1610095237821,
+      "lastModificationDate": 1639432581675,
       "contentHash": "66fd0a7d351fe9c496d8c3c57a47b96f",
       "sourceName": "contracts/v1/interfaces/IERC721Metadata.sol",
       "solcConfig": {
@@ -275,7 +282,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -295,7 +303,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/interfaces/IERC721Enumerable.sol": {
-      "lastModificationDate": 1610095237801,
+      "lastModificationDate": 1639432581675,
       "contentHash": "eaebc3874248c26f6ea0b13b9a140a94",
       "sourceName": "contracts/v1/interfaces/IERC721Enumerable.sol",
       "solcConfig": {
@@ -311,7 +319,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -331,7 +340,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/interfaces/IERC721Receiver.sol": {
-      "lastModificationDate": 1610095237849,
+      "lastModificationDate": 1639432581675,
       "contentHash": "fad0b3f4424bdbb4b35467b29ea8d334",
       "sourceName": "contracts/v1/interfaces/IERC721Receiver.sol",
       "solcConfig": {
@@ -347,7 +356,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -365,7 +375,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/ERC165.sol": {
-      "lastModificationDate": 1610108830561,
+      "lastModificationDate": 1639432581674,
       "contentHash": "4919872505bfb4571deb3bdfffd70237",
       "sourceName": "contracts/v1/ERC165.sol",
       "solcConfig": {
@@ -381,7 +391,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -401,7 +412,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/utils/Address.sol": {
-      "lastModificationDate": 1610095268294,
+      "lastModificationDate": 1639432581676,
       "contentHash": "dbb0d5e2c6f789dc2a549924090752aa",
       "sourceName": "contracts/v1/utils/Address.sol",
       "solcConfig": {
@@ -417,7 +428,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -435,7 +447,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/utils/EnumerableSet.sol": {
-      "lastModificationDate": 1610095268324,
+      "lastModificationDate": 1639432581676,
       "contentHash": "b608b788fd7b0f844e7a13856e3a5f89",
       "sourceName": "contracts/v1/utils/EnumerableSet.sol",
       "solcConfig": {
@@ -451,7 +463,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -469,7 +482,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/utils/EnumerableMap.sol": {
-      "lastModificationDate": 1610095268311,
+      "lastModificationDate": 1639432581676,
       "contentHash": "04e7892825fcab25ef52801c323aa4b1",
       "sourceName": "contracts/v1/utils/EnumerableMap.sol",
       "solcConfig": {
@@ -485,7 +498,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -503,7 +517,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/utils/Strings.sol": {
-      "lastModificationDate": 1610095268348,
+      "lastModificationDate": 1639432581676,
       "contentHash": "88f4d39d421a2409711454353a8e83a7",
       "sourceName": "contracts/v1/utils/Strings.sol",
       "solcConfig": {
@@ -519,7 +533,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -537,7 +552,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/Restorer.sol": {
-      "lastModificationDate": 1612787612350,
+      "lastModificationDate": 1639432581674,
       "contentHash": "d8356439f93bbeada35906804a55aa2b",
       "sourceName": "contracts/v1/Restorer.sol",
       "solcConfig": {
@@ -553,7 +568,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -575,7 +591,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/oldArtSteward.sol": {
-      "lastModificationDate": 1610526898270,
+      "lastModificationDate": 1639432581675,
       "contentHash": "f761597036c3441cf3dbb3fc4fde8820",
       "sourceName": "contracts/v1/oldArtSteward.sol",
       "solcConfig": {
@@ -591,7 +607,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
@@ -646,7 +663,7 @@
       ]
     },
     "/Users/simondlr2/code/ethereum/taiaos2/thisartworkisalwaysonsale/packages/hardhat/contracts/v1/ArtStewardV2.sol": {
-      "lastModificationDate": 1615278735398,
+      "lastModificationDate": 1639432581674,
       "contentHash": "f5bca484ce9d6d59f1621158a35d20ea",
       "sourceName": "contracts/v1/ArtStewardV2.sol",
       "solcConfig": {
@@ -662,7 +679,8 @@
                 "abi",
                 "evm.bytecode",
                 "evm.deployedBytecode",
-                "evm.methodIdentifiers"
+                "evm.methodIdentifiers",
+                "metadata"
               ],
               "": [
                 "ast"
