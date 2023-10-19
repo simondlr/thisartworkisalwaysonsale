@@ -13,6 +13,9 @@ module.exports = {
     localhost: {
       url: 'http://localhost:8545',
     },
+    hh_localhost: {
+      url: 'http://localhost:8545',
+    },
     hardhat: {
       accounts: defaultAccounts(),
       gas: 9500000,

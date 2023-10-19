@@ -1,33 +1,32 @@
 {
   "name": "@taiaos/react-app",
   "version": "1.0.0",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "browserslist": [
+    ">0.2%",
+    "not ie <= 99",
+    "not android <= 4.4.4",
+    "not dead",
+    "not op_mini all"
+  ],
   "dependencies": {
     "@apollo/client": "^3.3.6",
-    "@walletconnect/web3-provider": "^1.0.0-beta.47",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
+    "@web3modal/wagmi": "3.1.0",
     "antd": "^4.1.4",
     "axios": "^0.19.2",
     "bnc-notify": "^1.1.2",
-    "ethers": "^5.0.19",    
+    "@craco/craco": "^7.1.0",
+    "ethers": "^5.0.19",
     "graphql": "^15.4.0",
     "moment": "^2.25.3",
     "react": "16.12.0",
     "react-blockies": "^1.4.1",
     "react-dom": "16.12.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.1",
-    "web3modal": "^1.6.3"
+    "react-scripts": "^5.0.1",
+    "use-debounce": "9.0.4",
+    "viem": "^1.16.6",
+    "wagmi": "^1.4.4"
   },
   "devDependencies": {
     "@testing-library/dom": "^6.12.2",
@@ -39,9 +38,9 @@
     "extends": "react-app"
   },
   "scripts": {
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "test": "react-scripts test"
+    "build": "craco build",
+    "eject": "craco eject",
+    "start": "craco start",
+    "test": "craco test"
   }
 }
