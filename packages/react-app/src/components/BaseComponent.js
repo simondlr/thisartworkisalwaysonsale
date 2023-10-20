@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect} from "react";
 import artImageV1 from "./TAIAOS4.png";
 import artImageV2 from "./TAIAOS_2.png"
-import { Button, Col } from 'antd';
+import { Button } from 'antd';
 import moment from 'moment';
 
 import {ActionForms, BuyForm, CollectPatronageForm } from "./Functions";
@@ -264,7 +264,6 @@ function BaseComponent(props) {
         {isConnected ? chain.id === props.chainID ? <Fragment>{activeActionsSection}</Fragment> : wrongNetworkHML : offlineHTML }
         <br /><br />
         </div>
-        <CollectPatronageForm stewardAddress={stewardAddress} refreshGraphQL={refresh} />
         </div>
     );
 }
