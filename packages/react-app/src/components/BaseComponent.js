@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect} from "react";
 import artImageV1 from "./TAIAOS4.png";
 import artImageV2 from "./TAIAOS_2.png"
-import { Button } from 'antd';
+import { Button, Col } from 'antd';
 import moment from 'moment';
 
 import {ActionForms, BuyForm, CollectPatronageForm } from "./Functions";
@@ -109,6 +109,7 @@ function BaseComponent(props) {
       async function parseAndSaveData() {
           if(!!data) {
               if(savedData !== null) {
+                  console.log('parsing graph data');
                   const modifiedData = await parseData(data.steward);
                   setSavedData(data);
                   setModifiedData(modifiedData);
@@ -203,6 +204,7 @@ function BaseComponent(props) {
     const activeBuyArtSection = <Fragment>
       <p>You will pay {ethers.utils.formatEther(savedData.steward.currentPrice)} ETH.<br /> Since this is always on sale, you need to add your own sale price and initial amount you want to deposit for patronage: </p>
       <BuyForm
+        refreshGraphQL={refresh}
         artPriceETH={parseEther(formatEther(savedData.steward.currentPrice))}
         stewardAddress={stewardAddress}
       />
@@ -210,6 +212,7 @@ function BaseComponent(props) {
 
     const activeActionsSection = <Fragment>
       <ActionForms 
+        refreshGraphQL={refresh}
         stewardAddress={stewardAddress}
       />
     </Fragment>;
@@ -260,8 +263,8 @@ function BaseComponent(props) {
         <br />
         {isConnected ? chain.id === props.chainID ? <Fragment>{activeActionsSection}</Fragment> : wrongNetworkHML : offlineHTML }
         <br /><br />
-    </div>
-
+        </div>
+        <CollectPatronageForm stewardAddress={stewardAddress} refreshGraphQL={refresh} />
         </div>
     );
 }

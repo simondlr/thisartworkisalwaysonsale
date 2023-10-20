@@ -18,7 +18,7 @@ const chains = [mainnet, hardhat];
 const walletConnectID = process.env.REACT_APP_WALLETCONNECT_ID;
 const projectId = walletConnectID;
 const metadata = {
-  name: 'Web3Modal',
+  name: 'TAIAOS',
   description: 'TAIAOS',
   url: 'https://thisartworkisalwaysonsale.com'
 }

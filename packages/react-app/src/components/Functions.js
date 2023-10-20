@@ -32,6 +32,10 @@ function BuyForm(props) {
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -89,6 +93,10 @@ function ChangePriceForm(props) {
  
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -131,6 +139,10 @@ function TopupDepositForm(props) {
  
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -172,6 +184,10 @@ function WithdrawSomeDepositForm(props) {
  
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -212,6 +228,10 @@ function WithdrawWholeDepositForm(props) {
  
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -243,6 +263,10 @@ function CollectPatronageForm(props) {
  
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
+    onSuccess(data) {
+      console.log('tx succeeded, firing graphql refresh');
+      props.refreshGraphQL(); 
+    }
   });
 
   return (
@@ -267,16 +291,16 @@ function ActionForms(props) {
     return (
       <div>
         {/* Change Price*/}
-        <ChangePriceForm stewardAddress={props.stewardAddress} />
+        <ChangePriceForm stewardAddress={props.stewardAddress} refreshGraphQL={props.refreshGraphQL} />
         <br />
         {/* Top up Deposit*/}
-        <TopupDepositForm stewardAddress={props.stewardAddress} />
+        <TopupDepositForm stewardAddress={props.stewardAddress} refreshGraphQL={props.refreshGraphQL} />
         <br />
         {/*Withdraw Some Deposit*/}
-        <WithdrawSomeDepositForm stewardAddress={props.stewardAddress} />
+        <WithdrawSomeDepositForm stewardAddress={props.stewardAddress} refreshGraphQL={props.refreshGraphQL} />
         <br />
         {/*Withdraw Whole Deposit*/}
-        <WithdrawWholeDepositForm stewardAddress={props.stewardAddress} />
+        <WithdrawWholeDepositForm stewardAddress={props.stewardAddress} refreshGraphQL={props.refreshGraphQL} />
         <br />
       </div>
     );
