@@ -34,7 +34,8 @@ function App() {
   const v2StewardAddress = "0x595f2c4e9e3e35B0946394A714c2CD6875C04988";
 
   // mainnet
-  const graphURI = 'https://api.thegraph.com/subgraphs/name/simondlr/taiaos';
+  const GRAPH_API_KEY = process.env.REACT_APP_GRAPH_API_KEY;
+  const graphURI = 'https://gateway-arbitrum.network.thegraph.com/api/'+GRAPH_API_KEY+'/subgraphs/id/2gV9hXscJvJX5AKRXXgKsUbGgt69ahdaB6Le16qfJ21a';
 
   const client = new ApolloClient({
       uri: graphURI,
