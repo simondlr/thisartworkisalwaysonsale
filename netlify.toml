@@ -1,0 +1,26 @@
+[build]
+  base = "packages/nextjs"
+  command = "yarn build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Next.js plugin for Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Redirects for SPA behavior (fallback for any route not found)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"]}
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
