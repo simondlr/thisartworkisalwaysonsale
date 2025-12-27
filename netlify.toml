@@ -1,7 +1,7 @@
 [build]
   base = "packages/nextjs"
   command = "yarn build"
-  publish = ".next"
+  publish = "packages/nextjs/.next"
 
 [build.environment]
   NODE_VERSION = "20"
