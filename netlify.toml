@@ -1,7 +1,7 @@
 [build]
   base = "packages/nextjs"
   command = "yarn build"
-  publish = "packages/nextjs/.next"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "20"
@@ -9,13 +9,6 @@
 # Next.js plugin for Netlify
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-# Redirects for SPA behavior (fallback for any route not found)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  conditions = {Role = ["admin"]}
 
 # Headers for security
 [[headers]]
