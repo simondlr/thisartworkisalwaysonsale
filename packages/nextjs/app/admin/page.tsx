@@ -72,7 +72,7 @@ function StewardSection({ title, stewardAddress }: { title: string; stewardAddre
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           Artist Fund Balance:{" "}
           <span className="font-mono font-medium text-foreground">
             {artistFund !== undefined ? `${formatEther(artistFund)} ETH` : "Loading..."}
@@ -88,9 +88,9 @@ function StewardSection({ title, stewardAddress }: { title: string; stewardAddre
           </Button>
         </div>
 
-        {isCollectSuccess && <p className="text-sm text-green-600">Patronage collected!</p>}
+        {isCollectSuccess && <p className="text-sm text-success">Patronage collected!</p>}
         <TransactionError error={collectError} />
-        {isWithdrawSuccess && <p className="text-sm text-green-600">Artist funds withdrawn!</p>}
+        {isWithdrawSuccess && <p className="text-sm text-success">Artist funds withdrawn!</p>}
         <TransactionError error={withdrawError} />
       </CardContent>
     </Card>
@@ -117,8 +117,8 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-8 space-y-6">
-      <h1 className="text-3xl font-bold">Admin</h1>
+    <div className="space-y-6">
+      <h1 className="text-2xl font-semibold tracking-tight">Admin</h1>
       <StewardSection title="V1 Steward" stewardAddress={CONTRACT_ADDRESSES.v1Steward} />
       <StewardSection title="V2 Steward" stewardAddress={CONTRACT_ADDRESSES.v2Steward} />
     </div>

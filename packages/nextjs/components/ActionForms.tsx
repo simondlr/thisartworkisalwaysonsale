@@ -84,7 +84,7 @@ export function BuyForm({
       <Button type="submit" disabled={isPending || isConfirming}>
         {isPending || isConfirming ? "Processing..." : "Buy Artwork"}
       </Button>
-      {isSuccess && <p className="text-sm text-green-600">Transaction confirmed!</p>}
+      {isSuccess && <p className="text-sm text-success">Transaction confirmed!</p>}
       <TransactionError error={writeError} />
     </form>
   );
@@ -118,21 +118,23 @@ export function ChangePriceForm({ stewardAddress, onSuccess }: FormProps) {
   }, [isSuccess, onSuccess]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-2">
-      <div className="flex-1 space-y-2">
-        <label className="text-sm font-medium">New Price (ETH)</label>
-        <Input
-          type="number"
-          step="any"
-          placeholder="1.0"
-          value={newPrice}
-          onChange={(e) => setNewPrice(e.target.value)}
-          required
-        />
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <div className="flex items-end gap-2">
+        <div className="flex-1 space-y-2">
+          <label className="text-sm font-medium">New Price (ETH)</label>
+          <Input
+            type="number"
+            step="any"
+            placeholder="1.0"
+            value={newPrice}
+            onChange={(e) => setNewPrice(e.target.value)}
+            required
+          />
+        </div>
+        <Button type="submit" disabled={isPending || isConfirming}>
+          {isPending || isConfirming ? "..." : "Change Price"}
+        </Button>
       </div>
-      <Button type="submit" disabled={isPending || isConfirming}>
-        {isPending || isConfirming ? "..." : "Change Price"}
-      </Button>
       <TransactionError error={writeError} />
     </form>
   );
@@ -166,21 +168,23 @@ export function TopupDepositForm({ stewardAddress, onSuccess }: FormProps) {
   }, [isSuccess, onSuccess]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-2">
-      <div className="flex-1 space-y-2">
-        <label className="text-sm font-medium">Amount (ETH)</label>
-        <Input
-          type="number"
-          step="any"
-          placeholder="0.1"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <div className="flex items-end gap-2">
+        <div className="flex-1 space-y-2">
+          <label className="text-sm font-medium">Amount (ETH)</label>
+          <Input
+            type="number"
+            step="any"
+            placeholder="0.1"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
+        </div>
+        <Button type="submit" disabled={isPending || isConfirming}>
+          {isPending || isConfirming ? "..." : "Top Up"}
+        </Button>
       </div>
-      <Button type="submit" disabled={isPending || isConfirming}>
-        {isPending || isConfirming ? "..." : "Top Up"}
-      </Button>
       <TransactionError error={writeError} />
     </form>
   );
@@ -214,21 +218,23 @@ export function WithdrawDepositForm({ stewardAddress, onSuccess }: FormProps) {
   }, [isSuccess, onSuccess]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-end gap-2">
-      <div className="flex-1 space-y-2">
-        <label className="text-sm font-medium">Amount (ETH)</label>
-        <Input
-          type="number"
-          step="any"
-          placeholder="0.1"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          required
-        />
+    <form onSubmit={handleSubmit} className="space-y-2">
+      <div className="flex items-end gap-2">
+        <div className="flex-1 space-y-2">
+          <label className="text-sm font-medium">Amount (ETH)</label>
+          <Input
+            type="number"
+            step="any"
+            placeholder="0.1"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            required
+          />
+        </div>
+        <Button type="submit" disabled={isPending || isConfirming}>
+          {isPending || isConfirming ? "..." : "Withdraw"}
+        </Button>
       </div>
-      <Button type="submit" disabled={isPending || isConfirming}>
-        {isPending || isConfirming ? "..." : "Withdraw"}
-      </Button>
       <TransactionError error={writeError} />
     </form>
   );

@@ -31,9 +31,17 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Header />
-          <main className="max-w-2xl mx-auto px-4 py-8">
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
             {children}
           </main>
+          <footer className="border-t">
+            <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+              <span>This Artwork Is Always On Sale</span>
+              <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
+              <a href="https://github.com/simondlr/thisartworkisalwaysonsale" target="_blank" rel="noopener noreferrer" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors">GitHub</a>
+              <a href="https://twitter.com/simondlr" target="_blank" rel="noopener noreferrer" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors">Twitter</a>
+            </div>
+          </footer>
         </Providers>
       </body>
     </html>

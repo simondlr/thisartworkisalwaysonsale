@@ -6,6 +6,12 @@ import { useQuery } from "@apollo/client";
 import { formatEther } from "viem";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+function truncateAddress(address?: string): string {
+  if (!address) return "Unknown";
+  if (address.length <= 10) return address;
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
 import { Skeleton } from "@/components/ui/skeleton";
 import { STEWARDS_QUERY, type StewardData } from "@/lib/graphql";
 import { useEthPrice, getUsdValue } from "@/hooks/usePrices";
@@ -19,26 +25,27 @@ interface StewardsQueryResult {
 
 function ArtworkCardSkeleton({ imageSrc, subtitle }: { imageSrc: string; subtitle: string }) {
   return (
-    <Card className="mb-8">
-      <CardHeader className="text-center">
-        <Image
-          src={imageSrc}
-          alt="Artwork"
-          width={600}
-          height={600}
-          className="gallery mx-auto rounded-lg"
-          priority
-        />
-        <CardTitle className="mt-4">{subtitle}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2 text-center">
-        <Skeleton className="h-7 w-64 mx-auto" />
-        <Skeleton className="h-5 w-80 mx-auto" />
-        <Skeleton className="h-5 w-48 mx-auto" />
-        <Skeleton className="h-4 w-56 mx-auto" />
+    <div>
+      <Image
+        src={imageSrc}
+        alt="Artwork"
+        width={600}
+        height={600}
+        className="gallery mx-auto rounded-lg"
+        priority
+      />
+      <div className="mt-6 text-center">
+        <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>
+        <div className="rounded-lg border bg-muted/30 px-5 py-4 space-y-3 text-left">
+          <Skeleton className="h-8 w-72" />
+          <hr />
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-3 w-40" />
+          <Skeleton className="h-3 w-32" />
+        </div>
         <Skeleton className="h-10 w-32 mx-auto mt-4" />
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -70,47 +77,57 @@ function ArtworkCard({
   const timeHeldHumanized = humanizeDuration(totalTimeHeld);
 
   return (
-    <Card className="mb-8">
-      <CardHeader className="text-center">
-        <Image
-          src={imageSrc}
-          alt={`Artwork ${version.toUpperCase()}`}
-          width={600}
-          height={600}
-          className="gallery mx-auto rounded-lg"
-          priority
-        />
-        <CardTitle className="mt-4">{subtitle}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2 text-center">
-        <p className="text-lg">
-          Valued at: <span className="font-semibold">{priceEth} ETH</span>{" "}
-          <span className="text-muted-foreground">(~${priceUsd} USD)</span>
-        </p>
+    <div>
+      <Image
+        src={imageSrc}
+        alt={`Artwork ${version.toUpperCase()}`}
+        width={600}
+        height={600}
+        className="gallery mx-auto rounded-lg"
+        priority
+      />
+      <div className="mt-6 text-center">
+        <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>
 
-        {isForeclosed ? (
-          <p className="text-muted-foreground">
-            This artwork was recently foreclosed and is in control of the smart contract steward.
-            It has not been bought for 0 ETH for: {timeHeldHumanized}
+        <div className="rounded-lg border bg-muted/30 px-5 py-4 space-y-3 text-left">
+          <p className="text-2xl font-bold tracking-tight">
+            Valued at: {priceEth} ETH <span className="text-sm font-normal text-muted-foreground">(~${priceUsd} USD)</span>
           </p>
-        ) : (
-          <p className="text-muted-foreground">
-            Currently held by{" "}
-            <span className="font-mono text-xs break-all">{data?.currentPatron?.id}</span>
-            <br />
-            They&apos;ve held it for a lifetime of {timeHeldHumanized} thus far.
+
+          <hr />
+
+          {isForeclosed ? (
+            <p className="text-sm text-muted-foreground">
+              Foreclosed — held by smart contract steward for {timeHeldHumanized}
+            </p>
+          ) : (
+            <div className="space-y-1">
+              <p className="text-sm">
+                Held by{" "}
+                <span className="font-mono text-xs text-muted-foreground break-all" title={data?.currentPatron?.id}>
+                  <span className="hidden sm:inline">{data?.currentPatron?.id}</span>
+                  <span className="sm:hidden">{truncateAddress(data?.currentPatron?.id)}</span>
+                </span>
+              </p>
+              <p className="text-xs text-muted-foreground">
+                For {timeHeldHumanized}
+              </p>
+            </div>
+          )}
+
+          <p className="text-xs text-muted-foreground/70">
+            Patronage: {patronageRate}/yr
           </p>
-        )}
+        </div>
 
-        <p className="text-sm text-muted-foreground">
-          Patronage Rate: {patronageRate} per annum of sale price.
-        </p>
-
-        <Link href={`/${version}`}>
-          <Button className="mt-4">More Details</Button>
+        <Link
+          href={`/${version}`}
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mt-4"
+        >
+          View Details
         </Link>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
 
@@ -124,10 +141,10 @@ export default function Home() {
   const showSkeleton = loading && !data;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Artwork Cards or Skeletons */}
       {error && !data ? (
-        <Card className="mb-8">
+        <Card>
           <CardContent className="pt-6 text-center space-y-4">
             <p className="text-destructive">Error loading artwork data. Please try again.</p>
             <Button onClick={() => refetch()} variant="outline">
@@ -162,11 +179,9 @@ export default function Home() {
       )}
 
       {/* About Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>The Artworks</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4 text-sm text-muted-foreground">
+      <section className="border-t pt-10 space-y-4">
+        <h2 className="text-lg font-semibold tracking-tight">The Artworks</h2>
+        <div className="space-y-4 text-base text-muted-foreground leading-relaxed">
           <p>
             First launched on March 21, 2019, these NFT, digital artworks explore digital art with novel
             property rights associated with it. Using the Ethereum blockchain, it is possible to introduce
@@ -185,7 +200,7 @@ export default function Home() {
           </ul>
           <p>
             For more information, read this article:{" "}
-            <a href="https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">
               https://medium.com/@simondlr/this-artwork-is-always-on-sale-92a7d0c67f43
             </a>
           </p>
@@ -195,36 +210,60 @@ export default function Home() {
           </p>
           <p>
             You can check out more technical details, fork this project, and create your own artwork here:{" "}
-            <a href="https://github.com/simondlr/thisartworkisalwaysonsale" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/simondlr/thisartworkisalwaysonsale" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">
               https://github.com/simondlr/thisartworkisalwaysonsale
             </a>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </section>
 
       {/* Press Section */}
       <Card>
         <CardHeader>
           <CardTitle>Press/Mentions</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm space-y-1">
-          <p>Lumen Prize Longlist. NFT Award. (2022): <a href="https://www.lumenprize.com/2022-nft-award-longlist" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">2022 NFT Award Longlist</a></p>
-          <p>Ethereal Aether. State Hermitage (2021): <a href="https://celestialhermitage.ru/en/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Celestial Hermitage</a></p>
-          <p>Bijutsu Techo (2021): <a href="https://bijutsu.press/books/4892/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Special Feature What is &quot;NFT Art&quot;?!</a></p>
-          <p>artnet (2021): <a href="https://news.artnet.com/opinion/artists-blockchain-resale-royalties-1956903" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">&quot;Artists Have Been Attempting to Secure Royalties...&quot;</a></p>
-          <p>AMTLab (2021): <a href="https://amt-lab.org/blog/2021/9/nft-considerations-and-implications" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">&quot;NFTs Legal Considerations And Implications&quot;</a></p>
-          <p>CLOTmag (2021): <a href="https://www.clotmag.com/oped/talking-about-art-and-the-blockchain-by-charlotte-kent" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">&quot;Talking about Art and the Blockchain&quot;</a></p>
-          <p>ParaSite Hong Kong (2019): <a href="https://www.youtube.com/watch?v=all1wr0Gk7o" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">&quot;This Artwork is Always on Sale: A Crypto Story&quot;</a></p>
-          <p>CoinDesk (2019): <a href="https://www.coindesk.com/markets/2019/03/26/the-radicalxchange-movements-crypto-cypherpunk-appeal/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">&quot;The RadicalxChange Movement&apos;s Crypto-Cypherpunk Appeal&quot;</a></p>
+        <CardContent className="text-sm">
+          <ul className="space-y-3">
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2022</span>{" "}
+              <a href="https://www.lumenprize.com/2022-nft-award-longlist" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Lumen Prize Longlist — NFT Award</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2021</span>{" "}
+              <a href="https://celestialhermitage.ru/en/" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Ethereal Aether — State Hermitage</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2021</span>{" "}
+              <a href="https://bijutsu.press/books/4892/" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Bijutsu Techo — Special Feature: What is &quot;NFT Art&quot;?!</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2021</span>{" "}
+              <a href="https://news.artnet.com/opinion/artists-blockchain-resale-royalties-1956903" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">artnet — &quot;Artists Have Been Attempting to Secure Royalties...&quot;</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2021</span>{" "}
+              <a href="https://amt-lab.org/blog/2021/9/nft-considerations-and-implications" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">AMTLab — &quot;NFTs Legal Considerations And Implications&quot;</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2021</span>{" "}
+              <a href="https://www.clotmag.com/oped/talking-about-art-and-the-blockchain-by-charlotte-kent" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">CLOTmag — &quot;Talking about Art and the Blockchain&quot;</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2019</span>{" "}
+              <a href="https://www.youtube.com/watch?v=all1wr0Gk7o" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">ParaSite Hong Kong — &quot;This Artwork is Always on Sale: A Crypto Story&quot;</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2019</span>{" "}
+              <a href="https://www.coindesk.com/markets/2019/03/26/the-radicalxchange-movements-crypto-cypherpunk-appeal/" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">CoinDesk — &quot;The RadicalxChange Movement&apos;s Crypto-Cypherpunk Appeal&quot;</a>
+            </li>
+          </ul>
         </CardContent>
       </Card>
 
       {/* Artist Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>The Artist</CardTitle>
-        </CardHeader>
-        <CardContent className="text-sm text-muted-foreground space-y-4">
+      <section className="border-t pt-10 space-y-4">
+        <h2 className="text-lg font-semibold tracking-tight">The Artist</h2>
+        <div className="text-base text-muted-foreground leading-relaxed space-y-4">
           <p>
             I&apos;m a creator at heart. I have created games, writing, music, code, companies, and new economics.
             Solving the problems of the creator has always been important to me. In the past I co-founded Ujo Music,
@@ -236,14 +275,14 @@ export default function Home() {
           </p>
           <p>
             Swing me a follow on Twitter!{" "}
-            <a href="https://twitter.com/simondlr" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">@simondlr</a>
+            <a href="https://twitter.com/simondlr" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">@simondlr</a>
           </p>
           <p>
             Check my other art projects:{" "}
-            <a href="https://blog.simondlr.com/art" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">blog.simondlr.com/art</a>
+            <a href="https://blog.simondlr.com/art" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">blog.simondlr.com/art</a>
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </section>
     </div>
   );
 }
