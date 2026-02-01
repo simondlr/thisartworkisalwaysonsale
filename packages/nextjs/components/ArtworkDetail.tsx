@@ -7,6 +7,7 @@ import { useAccount, useChainId } from "wagmi";
 import { mainnet } from "wagmi/chains";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { STEWARD_V1_QUERY, STEWARD_V2_QUERY, type StewardData } from "@/lib/graphql";
 import { useEthPrice, getUsdValue } from "@/hooks/usePrices";
 import { humanizeDuration, formatDate } from "@/lib/time";
@@ -37,6 +38,65 @@ function calculatePatronageOwed(
   return (price * timeElapsed * numerator) / DENOMINATOR / YEAR_SECONDS;
 }
 
+function ValueSkeleton() {
+  return (
+    <Card>
+      <CardHeader>
+        <Skeleton className="h-8 w-80" />
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <Skeleton className="h-5 w-full" />
+        <Skeleton className="h-5 w-64" />
+        <Skeleton className="h-4 w-72" />
+        <hr className="my-4" />
+        <p className="text-sm text-muted-foreground">
+          The digital artwork above is always on sale.
+          <br />
+          In order to own this artwork, you always have to specify a sale price.
+          <br />
+          Anyone can buy it from the current patron at any time for the specified sale price.
+          <br />
+          Whilst held, a fee (based on the patronage rate) is constantly levied, per second, as patronage towards the artist.
+        </p>
+      </CardContent>
+    </Card>
+  );
+}
+
+function DetailsSkeleton() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>More Details</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <Skeleton className="h-10 w-32" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-48" />
+          <Skeleton className="h-4 w-56" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-40" />
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function ErrorCard({ onRetry }: { onRetry: () => void }) {
+  return (
+    <Card>
+      <CardContent className="pt-6 text-center space-y-4">
+        <p className="text-destructive">Error loading artwork data. Please try again.</p>
+        <Button onClick={onRetry} variant="outline">
+          Retry
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+
 export function ArtworkDetail({ version }: ArtworkDetailProps) {
   const { isConnected } = useAccount();
   const chainId = useChainId();
@@ -47,7 +107,7 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
   const patronageRate = version === "v1" ? "5%" : "100%";
   const imageSrc = version === "v1" ? "/artwork-v1.png" : "/artwork-v2.png";
 
-  const { data, loading, refetch } = useQuery<{ steward: StewardData }>(query, {
+  const { data, loading, error, refetch } = useQuery<{ steward: StewardData }>(query, {
     fetchPolicy: "cache-and-network",
   });
 
@@ -83,6 +143,9 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
     refetch();
   };
 
+  const showSkeleton = loading && !steward;
+  const showError = error && !steward;
+
   return (
     <div className="space-y-6">
       {/* Artwork Image */}
@@ -100,41 +163,47 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
       </Card>
 
       {/* Value Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl">
-            Valued at: {priceEth} ETH (~${priceUsd} USD)
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {isForeclosed ? (
-            <p className="text-muted-foreground">
-              This artwork was recently foreclosed and is in control of the smart contract steward.
-              It has not been bought for 0 ETH for: {timeHeldHumanized}
+      {showError ? (
+        <ErrorCard onRetry={handleRefresh} />
+      ) : showSkeleton ? (
+        <ValueSkeleton />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              Valued at: {priceEth} ETH (~${priceUsd} USD)
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {isForeclosed ? (
+              <p className="text-muted-foreground">
+                This artwork was recently foreclosed and is in control of the smart contract steward.
+                It has not been bought for 0 ETH for: {timeHeldHumanized}
+              </p>
+            ) : (
+              <p className="text-muted-foreground">
+                Currently held by{" "}
+                <span className="font-mono text-xs break-all">{steward?.currentPatron?.id}</span>
+                <br />
+                They&apos;ve held it for a lifetime of {timeHeldHumanized} thus far.
+              </p>
+            )}
+            <p className="text-sm">
+              Patronage Rate: {patronageRate} per annum of current sale price, paid per block.
             </p>
-          ) : (
-            <p className="text-muted-foreground">
-              Currently held by{" "}
-              <span className="font-mono text-xs break-all">{steward?.currentPatron?.id}</span>
+            <hr className="my-4" />
+            <p className="text-sm text-muted-foreground">
+              The digital artwork above is always on sale.
               <br />
-              They&apos;ve held it for a lifetime of {timeHeldHumanized} thus far.
+              In order to own this artwork, you always have to specify a sale price.
+              <br />
+              Anyone can buy it from the current patron at any time for the specified sale price.
+              <br />
+              Whilst held, a fee (based on the patronage rate) is constantly levied, per second, as patronage towards the artist.
             </p>
-          )}
-          <p className="text-sm">
-            Patronage Rate: {patronageRate} per annum of current sale price, paid per block.
-          </p>
-          <hr className="my-4" />
-          <p className="text-sm text-muted-foreground">
-            The digital artwork above is always on sale.
-            <br />
-            In order to own this artwork, you always have to specify a sale price.
-            <br />
-            Anyone can buy it from the current patron at any time for the specified sale price.
-            <br />
-            Whilst held, a fee (based on the patronage rate) is constantly levied, per second, as patronage towards the artist.
-          </p>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Restoration Section (V1 only) */}
       {version === "v1" && (
@@ -153,40 +222,46 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
       )}
 
       {/* Details Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>More Details</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Button onClick={handleRefresh} disabled={loading}>
-            {loading ? "Refreshing..." : "Refresh Data"}
-          </Button>
+      {showError ? (
+        <ErrorCard onRetry={handleRefresh} />
+      ) : showSkeleton ? (
+        <DetailsSkeleton />
+      ) : (
+        <Card>
+          <CardHeader>
+            <CardTitle>More Details</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button onClick={handleRefresh} disabled={loading}>
+              {loading ? "Refreshing..." : "Refresh Data"}
+            </Button>
 
-          <div className="space-y-2 text-sm">
-            <p>
-              <span className="font-medium">Currently Held By:</span>{" "}
-              <span className="font-mono text-xs break-all">{steward?.currentPatron?.id || "Loading..."}</span>
-            </p>
-            <p>
-              <span className="font-medium">Current Available Deposit:</span> {availableDepositEth} ETH
-            </p>
-            <p>
-              <span className="font-medium">Current Foreclosure Time:</span> {foreclosureTimeFormatted}
-            </p>
-            <p className="text-muted-foreground">
-              The current deposit will cover the patronage until the time above. At this time, the smart
-              contract steward takes ownership of the artwork and sets its price back to zero.
-            </p>
-            <p className="text-muted-foreground">
-              Once it crosses this time period, the patron can&apos;t top up their deposit anymore and is
-              effectively foreclosed.
-            </p>
-            <p>
-              <span className="font-medium">Lifetime Patronage Collected:</span> {combinedCollectedEth} ETH
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+            <div className="space-y-2 text-sm">
+              <p>
+                <span className="font-medium">Currently Held By:</span>{" "}
+                <span className="font-mono text-xs break-all">{steward?.currentPatron?.id || "Unknown"}</span>
+              </p>
+              <p>
+                <span className="font-medium">Current Available Deposit:</span> {availableDepositEth} ETH
+              </p>
+              <p>
+                <span className="font-medium">Current Foreclosure Time:</span> {foreclosureTimeFormatted}
+              </p>
+              <p className="text-muted-foreground">
+                The current deposit will cover the patronage until the time above. At this time, the smart
+                contract steward takes ownership of the artwork and sets its price back to zero.
+              </p>
+              <p className="text-muted-foreground">
+                Once it crosses this time period, the patron can&apos;t top up their deposit anymore and is
+                effectively foreclosed.
+              </p>
+              <p>
+                <span className="font-medium">Lifetime Patronage Collected:</span> {combinedCollectedEth} ETH
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Buy Section */}
       <Card>

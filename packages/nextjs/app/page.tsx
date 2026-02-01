@@ -6,6 +6,7 @@ import { useQuery } from "@apollo/client";
 import { formatEther } from "viem";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { STEWARDS_QUERY, type StewardData } from "@/lib/graphql";
 import { useEthPrice, getUsdValue } from "@/hooks/usePrices";
 import { humanizeDuration } from "@/lib/time";
@@ -14,6 +15,31 @@ import { CONTRACT_ADDRESSES } from "@/lib/wagmi";
 interface StewardsQueryResult {
   v1: StewardData;
   v2: StewardData;
+}
+
+function ArtworkCardSkeleton({ imageSrc, subtitle }: { imageSrc: string; subtitle: string }) {
+  return (
+    <Card className="mb-8">
+      <CardHeader className="text-center">
+        <Image
+          src={imageSrc}
+          alt="Artwork"
+          width={600}
+          height={600}
+          className="gallery mx-auto rounded-lg"
+          priority
+        />
+        <CardTitle className="mt-4">{subtitle}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-2 text-center">
+        <Skeleton className="h-7 w-64 mx-auto" />
+        <Skeleton className="h-5 w-80 mx-auto" />
+        <Skeleton className="h-5 w-48 mx-auto" />
+        <Skeleton className="h-4 w-56 mx-auto" />
+        <Skeleton className="h-10 w-32 mx-auto mt-4" />
+      </CardContent>
+    </Card>
+  );
 }
 
 function ArtworkCard({
@@ -89,41 +115,51 @@ function ArtworkCard({
 }
 
 export default function Home() {
-  const { data, loading, error } = useQuery<StewardsQueryResult>(STEWARDS_QUERY, {
+  const { data, loading, error, refetch } = useQuery<StewardsQueryResult>(STEWARDS_QUERY, {
     fetchPolicy: "cache-and-network",
   });
 
   const { data: ethPrice = 0 } = useEthPrice();
 
-  if (error) {
-    return (
-      <div className="text-center py-8">
-        <p className="text-destructive">Error loading data. Please try again later.</p>
-      </div>
-    );
-  }
+  const showSkeleton = loading && !data;
 
   return (
     <div className="space-y-8">
-      {/* Artwork V1 */}
-      <ArtworkCard
-        version="v1"
-        data={data?.v1 || null}
-        ethPrice={ethPrice}
-        imageSrc="/artwork-v1.png"
-        patronageRate="5%"
-        subtitle="Original (2019). Restored (2021)."
-      />
-
-      {/* Artwork V2 */}
-      <ArtworkCard
-        version="v2"
-        data={data?.v2 || null}
-        ethPrice={ethPrice}
-        imageSrc="/artwork-v2.png"
-        patronageRate="100%"
-        subtitle="V2 (2020)"
-      />
+      {/* Artwork Cards or Skeletons */}
+      {error && !data ? (
+        <Card className="mb-8">
+          <CardContent className="pt-6 text-center space-y-4">
+            <p className="text-destructive">Error loading artwork data. Please try again.</p>
+            <Button onClick={() => refetch()} variant="outline">
+              Retry
+            </Button>
+          </CardContent>
+        </Card>
+      ) : showSkeleton ? (
+        <>
+          <ArtworkCardSkeleton imageSrc="/artwork-v1.png" subtitle="Original (2019). Restored (2021)." />
+          <ArtworkCardSkeleton imageSrc="/artwork-v2.png" subtitle="V2 (2020)" />
+        </>
+      ) : (
+        <>
+          <ArtworkCard
+            version="v1"
+            data={data?.v1 || null}
+            ethPrice={ethPrice}
+            imageSrc="/artwork-v1.png"
+            patronageRate="5%"
+            subtitle="Original (2019). Restored (2021)."
+          />
+          <ArtworkCard
+            version="v2"
+            data={data?.v2 || null}
+            ethPrice={ethPrice}
+            imageSrc="/artwork-v2.png"
+            patronageRate="100%"
+            subtitle="V2 (2020)"
+          />
+        </>
+      )}
 
       {/* About Section */}
       <Card>
@@ -208,12 +244,6 @@ export default function Home() {
           </p>
         </CardContent>
       </Card>
-
-      {loading && (
-        <div className="fixed bottom-4 right-4 bg-muted px-4 py-2 rounded-md text-sm">
-          Loading...
-        </div>
-      )}
     </div>
   );
 }

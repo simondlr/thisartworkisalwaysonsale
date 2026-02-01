@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
 import { parseEther } from "viem";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,14 @@ interface FormProps {
   onSuccess?: () => void;
 }
 
+function TransactionError({ error }: { error: Error | null }) {
+  if (!error) return null;
+  const message = error.message?.includes("User rejected")
+    ? "Transaction was rejected."
+    : error.message?.split("\n")[0] || "Transaction failed.";
+  return <p className="text-sm text-destructive mt-2">{message}</p>;
+}
+
 export function BuyForm({
   stewardAddress,
   currentPrice,
@@ -20,7 +28,7 @@ export function BuyForm({
   const [newPrice, setNewPrice] = useState("");
   const [deposit, setDeposit] = useState("");
 
-  const { data: hash, writeContract, isPending } = useWriteContract();
+  const { data: hash, writeContract, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
@@ -43,9 +51,11 @@ export function BuyForm({
     });
   };
 
-  if (isSuccess && onSuccess) {
-    onSuccess();
-  }
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,6 +85,7 @@ export function BuyForm({
         {isPending || isConfirming ? "Processing..." : "Buy Artwork"}
       </Button>
       {isSuccess && <p className="text-sm text-green-600">Transaction confirmed!</p>}
+      <TransactionError error={writeError} />
     </form>
   );
 }
@@ -82,7 +93,7 @@ export function BuyForm({
 export function ChangePriceForm({ stewardAddress, onSuccess }: FormProps) {
   const [newPrice, setNewPrice] = useState("");
 
-  const { data: hash, writeContract, isPending } = useWriteContract();
+  const { data: hash, writeContract, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
@@ -100,9 +111,11 @@ export function ChangePriceForm({ stewardAddress, onSuccess }: FormProps) {
     });
   };
 
-  if (isSuccess && onSuccess) {
-    onSuccess();
-  }
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
 
   return (
     <form onSubmit={handleSubmit} className="flex items-end gap-2">
@@ -120,6 +133,7 @@ export function ChangePriceForm({ stewardAddress, onSuccess }: FormProps) {
       <Button type="submit" disabled={isPending || isConfirming}>
         {isPending || isConfirming ? "..." : "Change Price"}
       </Button>
+      <TransactionError error={writeError} />
     </form>
   );
 }
@@ -127,7 +141,7 @@ export function ChangePriceForm({ stewardAddress, onSuccess }: FormProps) {
 export function TopupDepositForm({ stewardAddress, onSuccess }: FormProps) {
   const [amount, setAmount] = useState("");
 
-  const { data: hash, writeContract, isPending } = useWriteContract();
+  const { data: hash, writeContract, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
@@ -145,9 +159,11 @@ export function TopupDepositForm({ stewardAddress, onSuccess }: FormProps) {
     });
   };
 
-  if (isSuccess && onSuccess) {
-    onSuccess();
-  }
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
 
   return (
     <form onSubmit={handleSubmit} className="flex items-end gap-2">
@@ -165,6 +181,7 @@ export function TopupDepositForm({ stewardAddress, onSuccess }: FormProps) {
       <Button type="submit" disabled={isPending || isConfirming}>
         {isPending || isConfirming ? "..." : "Top Up"}
       </Button>
+      <TransactionError error={writeError} />
     </form>
   );
 }
@@ -172,7 +189,7 @@ export function TopupDepositForm({ stewardAddress, onSuccess }: FormProps) {
 export function WithdrawDepositForm({ stewardAddress, onSuccess }: FormProps) {
   const [amount, setAmount] = useState("");
 
-  const { data: hash, writeContract, isPending } = useWriteContract();
+  const { data: hash, writeContract, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
@@ -190,9 +207,11 @@ export function WithdrawDepositForm({ stewardAddress, onSuccess }: FormProps) {
     });
   };
 
-  if (isSuccess && onSuccess) {
-    onSuccess();
-  }
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
 
   return (
     <form onSubmit={handleSubmit} className="flex items-end gap-2">
@@ -210,12 +229,13 @@ export function WithdrawDepositForm({ stewardAddress, onSuccess }: FormProps) {
       <Button type="submit" disabled={isPending || isConfirming}>
         {isPending || isConfirming ? "..." : "Withdraw"}
       </Button>
+      <TransactionError error={writeError} />
     </form>
   );
 }
 
 export function ExitForm({ stewardAddress, onSuccess }: FormProps) {
-  const { data: hash, writeContract, isPending } = useWriteContract();
+  const { data: hash, writeContract, isPending, error: writeError } = useWriteContract();
 
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({
     hash,
@@ -231,15 +251,18 @@ export function ExitForm({ stewardAddress, onSuccess }: FormProps) {
     });
   };
 
-  if (isSuccess && onSuccess) {
-    onSuccess();
-  }
+  useEffect(() => {
+    if (isSuccess && onSuccess) {
+      onSuccess();
+    }
+  }, [isSuccess, onSuccess]);
 
   return (
     <form onSubmit={handleSubmit}>
       <Button type="submit" variant="destructive" disabled={isPending || isConfirming}>
         {isPending || isConfirming ? "Processing..." : "Withdraw Entire Deposit & Foreclose"}
       </Button>
+      <TransactionError error={writeError} />
     </form>
   );
 }

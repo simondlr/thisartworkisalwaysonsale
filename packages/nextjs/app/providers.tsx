@@ -13,12 +13,18 @@ import "@rainbow-me/rainbowkit/styles.css";
 const queryClient = new QueryClient();
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider theme={darkTheme()}>
           <ApolloProvider client={apolloClient}>
-            {children}
+            {mounted ? children : <div style={{ visibility: "hidden" }}>{children}</div>}
           </ApolloProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
