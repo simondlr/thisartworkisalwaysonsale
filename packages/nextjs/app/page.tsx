@@ -290,7 +290,7 @@ export default function Home() {
             token bonding curves. Today, I'm primarily a writer, artist, and technologist.
           </p>
           <p>
-            Subscribe to Substack!{" "}
+            Subscribe to my newsletter!{" "}
             <a href="https://sceneswithsimon.com" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">sceneswithsimon.com</a>
           </p>
           <p>
