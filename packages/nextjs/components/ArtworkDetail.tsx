@@ -165,11 +165,12 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
           alt={`Artwork ${version.toUpperCase()}`}
           width={600}
           height={600}
-          className="gallery mx-auto rounded-lg"
+          className="gallery mx-auto"
           priority
         />
       </div>
 
+      <div className="max-w-[80%] mx-auto space-y-10">
       {/* Value Section */}
       {showError ? (
         <ErrorCard onRetry={handleRefresh} />
@@ -357,6 +358,7 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
           </Card>
         </>
       )}
+      </div>
     </div>
   );
 }

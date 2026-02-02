@@ -31,19 +31,21 @@ function ArtworkCardSkeleton({ imageSrc, subtitle }: { imageSrc: string; subtitl
         alt="Artwork"
         width={600}
         height={600}
-        className="gallery mx-auto rounded-lg"
+        className="gallery mx-auto"
         priority
       />
       <div className="mt-6 text-center">
-        <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>
-        <div className="rounded-lg border bg-muted/30 px-5 py-4 space-y-3 text-left">
-          <Skeleton className="h-8 w-72" />
-          <hr />
-          <Skeleton className="h-4 w-56" />
-          <Skeleton className="h-3 w-40" />
-          <Skeleton className="h-3 w-32" />
+        <p className="text-xl font-semibold tracking-tight text-foreground mb-4">{subtitle}</p>
+        <div className="max-w-[80%] mx-auto">
+          <div className="rounded-lg border bg-muted/30 px-5 py-4 space-y-3 text-left">
+            <Skeleton className="h-8 w-72" />
+            <hr />
+            <Skeleton className="h-4 w-56" />
+            <Skeleton className="h-3 w-40" />
+            <Skeleton className="h-3 w-32" />
+          </div>
+          <Skeleton className="h-10 w-32 mx-auto mt-4" />
         </div>
-        <Skeleton className="h-10 w-32 mx-auto mt-4" />
       </div>
     </div>
   );
@@ -83,12 +85,13 @@ function ArtworkCard({
         alt={`Artwork ${version.toUpperCase()}`}
         width={600}
         height={600}
-        className="gallery mx-auto rounded-lg"
+        className="gallery mx-auto"
         priority
       />
       <div className="mt-6 text-center">
-        <p className="text-sm text-muted-foreground mb-4">{subtitle}</p>
+        <p className="text-xl font-semibold tracking-tight text-foreground mb-4">{subtitle}</p>
 
+        <div className="max-w-[80%] mx-auto">
         <div className="rounded-lg border bg-muted/30 px-5 py-4 space-y-3 text-left">
           <p className="text-2xl font-bold tracking-tight">
             Valued at: {priceEth} ETH <span className="text-sm font-normal text-muted-foreground">(~${priceUsd} USD)</span>
@@ -126,6 +129,7 @@ function ArtworkCard({
         >
           View Details
         </Link>
+        </div>
       </div>
     </div>
   );
