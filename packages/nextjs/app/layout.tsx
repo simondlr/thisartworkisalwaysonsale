@@ -7,17 +7,20 @@ import { Header } from "@/components/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://thisartworkisalwaysonsale.com"),
   title: "This Artwork Is Always On Sale",
   description: "A digital artwork exploring novel property rights using Harberger Tax on the Ethereum blockchain",
   openGraph: {
     title: "This Artwork Is Always On Sale",
     description: "A digital artwork exploring novel property rights using Harberger Tax on the Ethereum blockchain",
     type: "website",
+    images: [{ url: "/artwork-v1.png" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "This Artwork Is Always On Sale",
     description: "A digital artwork exploring novel property rights using Harberger Tax on the Ethereum blockchain",
+    images: ["/artwork-v1.png"],
   },
 };
 
