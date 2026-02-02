@@ -39,7 +39,6 @@ export default function RootLayout({
               <span>This Artwork Is Always On Sale</span>
               <span className="hidden sm:inline" aria-hidden="true">&middot;</span>
               <a href="https://github.com/simondlr/thisartworkisalwaysonsale" target="_blank" rel="noopener noreferrer" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors">GitHub</a>
-              <a href="https://twitter.com/simondlr" target="_blank" rel="noopener noreferrer" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors">Twitter</a>
             </div>
           </footer>
         </Providers>

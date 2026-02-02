@@ -189,7 +189,11 @@ export default function Home() {
             this artwork follows a modified Harberger Tax (COST) property ownership where the tax on the
             property (patronage) is collected only by the artist. It is perpetual royalty.
           </p>
-          <p>Through this, it asks a few questions:</p>
+          <p>
+            The owner must always specify a sale price. Contingent on this price and the patronage rate, the smart contract
+            automatically deducts royalties from the owner's deposit.
+          </p>
+          <p>Through this artwork, it asks a few questions:</p>
           <ul className="list-disc list-inside space-y-1 ml-2">
             <li>Does this digital art property rights system change the relationship between collector/patron and artist?</li>
             <li>Does allowing for a more readily available avenue for patronage create more revenue for an artist?</li>
@@ -205,8 +209,8 @@ export default function Home() {
             </a>
           </p>
           <p>
-            The first artwork has a patronage rate of 5%. It was restored after it was discovered that it was damaged.
-            A new edition was created, launched in June 2020, using a new patronage rate of 100% in order to continue experimentation.
+            The first artwork (V1) has a patronage rate of 5%. It was restored after it was discovered that it was damaged.
+            A new edition (V2) was created, launched in June 2020, using a new patronage rate of 100% in order to continue experimentation.
           </p>
           <p>
             You can check out more technical details, fork this project, and create your own artwork here:{" "}
@@ -220,10 +224,22 @@ export default function Home() {
       {/* Press Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Press/Mentions</CardTitle>
+          <CardTitle>Select Press/Mentions</CardTitle>
         </CardHeader>
         <CardContent className="text-sm">
           <ul className="space-y-3">
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2025</span>{" "}
+              <a href="https://www.taschen.com/en/books/art/08154/on-nfts/" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Taschen - On NFTs</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2025</span>{" "}
+              <a href="https://artmetropole.com/shop/16485" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Espace 140: Blockchain</a>
+            </li>
+            <li>
+              <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2022</span>{" "}
+              <a href="https://shop.spikeartmagazine.com/products/issue-70-winter-2021-web3" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Spike Magazine 70: Web3</a>
+            </li>
             <li>
               <span className="inline-block w-12 font-medium tabular-nums text-muted-foreground/70">2022</span>{" "}
               <a href="https://www.lumenprize.com/2022-nft-award-longlist" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">Lumen Prize Longlist — NFT Award</a>
@@ -265,21 +281,20 @@ export default function Home() {
         <h2 className="text-lg font-semibold tracking-tight">The Artist</h2>
         <div className="text-base text-muted-foreground leading-relaxed space-y-4">
           <p>
-            I&apos;m a creator at heart. I have created games, writing, music, code, companies, and new economics.
-            Solving the problems of the creator has always been important to me. In the past I co-founded Ujo Music,
-            working with Grammy-winning artists such as Imogen Heap and RAC to launch the first music royalty projects
-            using smart contracts. I&apos;ve helped kickstart wholly new markets and economies. I helped to create the
-            Ethereum ERC20 token standard and token bonding curves, technologies that&apos;s currently facilitating
-            economies worth several billion dollars of value. I enjoy creating new forms of art and experimenting
-            with ways to empower creatives.
+            I'm a creator at heart. Besides my art practice, I have created games, novels, music, companies, and 
+            new economics. In the Ethereum world, I helped create the ERC20 token standard and co-invented and popularised
+            token bonding curves. Today, I'm primarily a writer, artist, and technologist.
           </p>
           <p>
-            Swing me a follow on Twitter!{" "}
-            <a href="https://twitter.com/simondlr" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">@simondlr</a>
+            Subscribe to Substack!{" "}
+            <a href="https://sceneswithsimon.com" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">sceneswithsimon.com</a>
           </p>
           <p>
             Check my other art projects:{" "}
-            <a href="https://blog.simondlr.com/art" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">blog.simondlr.com/art</a>
+            <a href="https://home.simondlr.com/art" className="text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-colors" target="_blank" rel="noopener noreferrer">home.simondlr.com/art</a>
+          </p>
+          <p>
+            Last updated: February 2026
           </p>
         </div>
       </section>

@@ -113,6 +113,7 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
 
   const { data, loading, error, refetch } = useQuery<{ steward: StewardData }>(query, {
     fetchPolicy: "cache-and-network",
+    notifyOnNetworkStatusChange: true,
   });
 
   const { data: ethPrice = 0 } = useEthPrice();
@@ -217,7 +218,7 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
         <section className="border-t pt-6">
           <h2 className="text-lg font-semibold tracking-tight mb-4">Restoration</h2>
           <p className="text-base text-muted-foreground leading-relaxed">
-            This artwork was damaged, and went through a digital restoration. The damaged canvas is
+            This artwork was damaged, and <a href="https://home.simondlr.com/posts/the-story-of-restoring-a-digital-artwork-that-is-always-on-sale" className="underline">went through a digital restoration</a>. The damaged canvas is
             now irrevocably fused into this version. It&apos;s the first digital artwork that&apos;s always
             on sale that underwent a unique restoration procedure.
           </p>
@@ -244,6 +245,20 @@ export function ArtworkDetail({ version }: ArtworkDetailProps) {
                 <dd className="font-medium font-mono text-xs break-all" title={steward?.currentPatron?.id}>
                   <span className="hidden sm:inline">{steward?.currentPatron?.id}</span>
                   <span className="sm:hidden">{truncateAddress(steward?.currentPatron?.id)}</span>
+                </dd>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-4">
+                <dt className="text-xs uppercase tracking-wide font-medium text-muted-foreground">Contract Steward</dt>
+                <dd className="font-medium font-mono text-xs break-all">
+                  <a
+                    href={`https://etherscan.io/address/${stewardAddress}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline"
+                  >
+                    <span className="hidden sm:inline">{stewardAddress}</span>
+                    <span className="sm:hidden">{truncateAddress(stewardAddress)}</span>
+                  </a>
                 </dd>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 sm:gap-4">
