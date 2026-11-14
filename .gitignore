@@ -1,8 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 **/node_modules
-packages/buidler/artifacts
-packages/buidler/cache
-packages/buidler/.openzeppelin/.session
+
+# build output
+.next/
+packages/foundry/out
+packages/foundry/cache
+packages/foundry/broadcast
+packages/hardhat/artifacts
+packages/hardhat/cache
 
 
 # dependencies
