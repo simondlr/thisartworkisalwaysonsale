@@ -24,6 +24,8 @@ export function useEthPrice() {
   });
 }
 
-export function getUsdValue(ethAmount: number, ethPrice: number): number {
-  return Math.floor(ethAmount * ethPrice);
+// Returns null when the ETH price is unavailable, so callers can hide the USD figure.
+export function formatUsd(ethAmount: number, ethPrice: number): string | null {
+  if (!ethPrice) return null;
+  return Math.floor(ethAmount * ethPrice).toLocaleString("en-US");
 }

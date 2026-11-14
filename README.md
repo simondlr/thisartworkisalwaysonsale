@@ -86,7 +86,10 @@ Run a Docker-based Graph node pointed at `localhost:8545`, then clone and deploy
 
 **Contract tests**
 
+`forge-std` is a git submodule (pinned to v1.13.0, the last release supporting solc < 0.8). Fetch it once, then run the V1 (solc 0.7.6) and V2 (solc 0.6.12) suites:
+
 ```
+git submodule update --init
 yarn test
 yarn test:v
 ```
